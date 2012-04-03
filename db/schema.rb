@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402200831) do
+ActiveRecord::Schema.define(:version => 20120403205157) do
 
   create_table "attributes", :force => true do |t|
     t.string   "name"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20120402200831) do
 
   create_table "pages_audiences", :id => false, :force => true do |t|
     t.integer "page_id"
-    t.integer "audiences_id"
+    t.integer "audience_id"
   end
 
   create_table "pages_needs", :id => false, :force => true do |t|
