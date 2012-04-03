@@ -1,0 +1,2 @@
+module HarvesterHelper
+end

@@ -1,4 +1,6 @@
 HarvesterNg::Application.routes.draw do
+  get "harvester/index"
+
   devise_for :users
 
   # The priority is based upon order of creation:
