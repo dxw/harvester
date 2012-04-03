@@ -1,5 +1,6 @@
 HarvesterNg::Application.routes.draw do
   get "harvester/index"
+  post 'pages/update_multiple'
 
   devise_for :users
 
