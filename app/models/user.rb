@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_and_belongs_to_many :departments, join_table: :users_departments
+  has_many :groups
 end
