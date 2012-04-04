@@ -10,6 +10,7 @@ class PagesController < ApplicationController
         [Need, :needs, true],
       ].each do |cls, mtd, create|
         page.send(mtd).clear
+        next unless v[mtd.to_s]
         v[mtd.to_s].each do |a|
           unless b = cls.find_by_name(a)
             b = cls.create!(name: a) if create

@@ -11,7 +11,7 @@ describe PagesController do
       @pages << FactoryGirl.create(:page)
     end
 
-    it 'updates values' do
+    it "updates values" do
       post :update_multiple, {
         pages: {
           @pages.first.id => {
@@ -37,6 +37,23 @@ describe PagesController do
       Page.all.second.attributes.map {|a| a.name }.should == ['bl', 'spec']
       Page.all.second.audiences.map {|a| a.name }.should == ['a cute dog']
       Page.all.second.needs.map {|a| a.name }.should == ['treats', 'lovin\'']
+    end
+
+    it "should fail quietly when asked to create new attributes" do
+      post :update_multiple, {
+        pages: {
+          @pages.first.id => {
+            attributes: ['cit', 'biz']
+          },
+          @pages.second.id => {
+            attributes: ['bl', 'spec', 'cats'],
+          }
+        }
+      }
+
+      Page.all.first.attributes.map {|a| a.name }.should == ['cit', 'biz']
+      Page.all.second.attributes.map {|a| a.name }.should == ['bl', 'spec']
+      Attribute.find_by_name('cats').should be_nil
     end
   end
 end
