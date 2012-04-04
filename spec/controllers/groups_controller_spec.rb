@@ -9,9 +9,9 @@ describe GroupsController do
     @groups << FactoryGirl.create(:group, name: 'Group2')
   end
 
-  describe "POST ':id/take'" do
+  describe "POST 'update'" do
     it "allows taking groups" do
-      post 'take', id: @groups.first.id
+      post 'update', group: {id: @groups.first.id, taken: true}
 
       @groups.first.taken?.should be_true
       @groups.taken_by_user.should_not be_nil

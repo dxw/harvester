@@ -1,7 +1,9 @@
 HarvesterNg::Application.routes.draw do
+  resources :xyzs
+
   get "groups/edit"
 
-  post "groups/:id/take" => 'groups#take'
+  resource :groups
 
   get "harvester/index"
   post 'pages/update_multiple'
