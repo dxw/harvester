@@ -24,3 +24,4 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'rspec-rails'
+gem 'factory_girl_rails'
