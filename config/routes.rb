@@ -1,7 +1,7 @@
 HarvesterNg::Application.routes.draw do
   get "groups/edit"
 
-  get "groups/take"
+  post "groups/:id/take" => 'groups#take'
 
   get "harvester/index"
   post 'pages/update_multiple'

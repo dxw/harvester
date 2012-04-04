@@ -10,4 +10,9 @@ class Group < ActiveRecord::Base
   def taken?
     !taken_by.nil?
   end
+
+  def take! user
+    taken_by = user.id
+    save!
+  end
 end
