@@ -16,9 +16,20 @@ describe "EditGroups" do
   end
 
   describe "GET /groups/1/edit" do
-    it "works! (now write some real specs)" do
+    it "allows taking a group" do
       get edit_group_path(Group.first.id)
       response.status.should be(200)
+
+      Group.first.taken?.should == false
+      response.body.should include 'Take'
+      response.body.should_not include 'Save'
+
+      click_button 'Take'
+
+      Group.first.taken?.should == true
+      Group.first.taken_by_user.should == User.first
+      response.body.should_not include 'Take'
+      response.body.should include 'Save'
     end
   end
 end

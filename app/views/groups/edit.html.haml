@@ -7,9 +7,7 @@
   %ul
     - if @group.taken?
       - if @group.taken_by? current_user
-        %li= submit_tag('Put back')
         %li= submit_tag('Save')
-        %li= submit_tag('Save & Next')
     - else
       %li= submit_tag('Take')
 

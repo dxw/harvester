@@ -11,6 +11,7 @@ describe GroupsController do
 
   describe "POST 'update'" do
     it "allows taking groups" do
+      pending
       post 'update', group: {id: @groups.first.id, taken: true}
 
       @groups.first.taken?.should be_true
@@ -21,6 +22,7 @@ describe GroupsController do
 
   describe "GET 'edit'" do
     it "returns http success" do
+      pending
       get 'edit'
       response.should be_success
       pending

@@ -2,11 +2,14 @@ class GroupsController < ApplicationController
   before_filter :authenticate_user!
 
   def update
-    p 'help'
-    p 'wtf is going on here'
-    p 'x'
-    p current_user
-    Group.find(params[:id]).take! current_user
+    @group = Group.find(params[:id])
+
+    if params[:commit] == 'Take'
+      @group.taken_by = current_user
+      @group.save!
+    end
+
+    redirect_to edit_group_path(@group.id)
   end
 
   def edit
