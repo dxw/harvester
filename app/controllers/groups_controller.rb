@@ -10,5 +10,6 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    @xyz = Group.find(params[:id])
   end
 end
