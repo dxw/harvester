@@ -66,6 +66,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    nokogiri (1.5.2)
     orm_adapter (0.0.7)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -127,6 +128,10 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.1.1)
       rack (>= 1.0)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
 
 PLATFORMS
   ruby
@@ -142,3 +147,4 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
+  webrat
