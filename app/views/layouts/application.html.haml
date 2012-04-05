@@ -6,6 +6,16 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    %h1 Harvester
-    %p TODO: "signed in as ..." logout | "sign in"
+    %header
+      %h1 Harvester
+      %p
+      - if current_user.nil?
+        %a{href: new_user_session_path} Sign in
+      - else
+        Signed in as
+        %strong
+          = current_user.email
+        = form_tag destroy_user_session_path, method: :delete do
+          = submit_tag 'Sign out'
+
     = yield
