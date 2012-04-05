@@ -15,8 +15,6 @@
     %tbody
       - @group.pages.each do |page|
         %tr
-          %td
-            %a{href: page.uri, target: :content}= page.name
-          %td TODO
-          %td= text_field_tag(:audiences)
-          %td= text_field_tag(:needs)
+          - [:attributes, :audiences, :needs].each do |a|
+            %td
+              = render partial: 'taxonomy_tag', locals: {tax: a}

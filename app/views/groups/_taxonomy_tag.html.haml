@@ -1,0 +1,7 @@
+- tag = taxonomy_tag(tax)
+- case tag[:type]
+- when :checkboxes
+  - tag[:cls].all.each do |a|
+    = check_box_tag('%s[%s]' % [tag,a])
+- when :text
+  = text_field_tag(tax)
