@@ -15,4 +15,8 @@ class Group < ActiveRecord::Base
     taken_by = user.id
     save!
   end
+
+  def taken_by? user
+    taken_by == user.id
+  end
 end

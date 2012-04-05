@@ -1,5 +1,15 @@
 require 'spec_helper'
 
 describe "groups/edit.html.erb" do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before(:each) do
+
+  end
+
+  it "displays the group name" do
+    pending
+  end
+  it "displays the page names" do
+    pending
+  end
 end

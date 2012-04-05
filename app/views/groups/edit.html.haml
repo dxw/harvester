@@ -1,2 +1,23 @@
-%h1 Groups#edit
-%p Find me in app/views/groups/edit.html.erb
+%h1= @group.name
+
+- if @group.taken? && !(@group.taken_by? current_user)
+  %p Group is taken by somebody else.
+
+= form_tag({action: :update, id: @group.id}, method: :put) do
+  %ul
+    - if @group.taken?
+      - if @group.taken_by? current_user
+        %li= submit_tag('Put back')
+        %li= submit_tag('Save')
+    - else
+      %li= submit_tag('Take')
+
+  %table
+    %tbody
+      - @group.pages.each do |page|
+        %tr
+          %td
+            %a{href: page.uri}= page.name
+          %td TODO
+          %td= text_field_tag(:audiences)
+          %td= text_field_tag(:needs)
