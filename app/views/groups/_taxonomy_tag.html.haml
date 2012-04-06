@@ -2,6 +2,6 @@
 - case tag[:type]
 - when :checkboxes
   - tag[:cls].all.each do |a|
-    = check_box_tag('%s[%s]' % [tag,a])
+    = check_box_tag('pages[%s][%s][%s]' % [page.id, tax, a.name])
 - when :text
-  = text_field_tag(tax)
+  = text_field_tag('pages[%s][%s]' % [page.id, tax])

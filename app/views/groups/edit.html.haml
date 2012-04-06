@@ -17,4 +17,4 @@
         %tr
           - [:attributes, :audiences, :needs].each do |a|
             %td
-              = render partial: 'taxonomy_tag', locals: {tax: a}
+              = render partial: 'taxonomy_tag', locals: {tax: a, page: page}
