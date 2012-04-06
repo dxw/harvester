@@ -4,15 +4,15 @@ class Group < ActiveRecord::Base
   has_many :pages
 
   def taken_by_user
-    User.find(taken_by)
+    User.find(self.taken_by)
   end
 
   def taken?
-    !taken_by.nil?
+    !self.taken_by.nil?
   end
 
   def take! user
-    taken_by = user.id
+    self.taken_by = user.id
     save!
   end
 
@@ -27,7 +27,7 @@ class Group < ActiveRecord::Base
   end
 
   def available?
-    done? && !taken?
+    !done? && !taken?
   end
 
   def self.next
