@@ -31,5 +31,31 @@ describe "EditGroups" do
       response.body.should_not include 'Take'
       response.body.should include 'Save'
     end
+
+    it "allows saving a group - untaking" do
+      get edit_group_path(Group.first.id)
+      response.status.should be(200)
+      click_button 'Take'
+
+      Group.first.taken?.should == true
+      Group.first.taken_by_user.should == User.first
+      response.body.should_not include 'Take'
+      response.body.should include 'Save'
+
+      click_button 'Save'
+
+      Group.first.taken?.should == false
+      response.body.should include 'Take'
+      response.body.should_not include 'Save'
+    end
+
+    it "allows saving a group - updating values" do
+      get edit_group_path(Group.first.id)
+      response.status.should be(200)
+      click_button 'Take'
+
+      pending
+      click_button 'Save'
+    end
   end
 end
