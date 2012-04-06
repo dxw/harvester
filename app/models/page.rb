@@ -4,13 +4,15 @@ class Page < ActiveRecord::Base
   has_and_belongs_to_many :audiences, join_table: :pages_audiences
   has_and_belongs_to_many :needs, join_table: :pages_needs
 
-  def set_tags(taxonomy, values)
-    taxonomies = {
+  def taxonomies
+    {
       attributes: [::Attribute, :attributes, false],
       audiences:  [::Audience, :audiences, true],
       needs:      [::Need, :needs, true],
     }
+  end
 
+  def set_tags(taxonomy, values)
     cls, mtd, create = taxonomies[taxonomy]
 
     self.send(mtd).clear
@@ -23,4 +25,19 @@ class Page < ActiveRecord::Base
 
   end
 
+  def has_tag?(taxonomy, value)
+    cls, mtd, create = taxonomies[taxonomy]
+
+    self.send(mtd).any? do |t|
+      t.name == value
+    end
+  end
+
+  def tags(taxonomy)
+    cls, mtd, create = taxonomies[taxonomy]
+
+    self.send(mtd).map do |t|
+      t.name
+    end
+  end
 end
