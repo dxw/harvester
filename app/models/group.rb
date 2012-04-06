@@ -19,4 +19,20 @@ class Group < ActiveRecord::Base
   def taken_by? user
     taken_by == user.id
   end
+
+  def done?
+    pages.all? do |page|
+      page.done?
+    end
+  end
+
+  def available?
+    done? && !taken?
+  end
+
+  def self.next
+    Group.all.select do |g|
+      g.available?
+    end.first
+  end
 end

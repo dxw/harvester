@@ -40,4 +40,10 @@ class Page < ActiveRecord::Base
       t.name
     end
   end
+
+  def done?
+    taxonomies.values.map{|t|t[1]}.all? do |t|
+      tags(t).length > 0
+    end
+  end
 end
