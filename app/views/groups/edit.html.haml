@@ -7,15 +7,17 @@
   %ul
     - if @group.taken?
       - if @group.taken_by? current_user
-        %li= submit_tag('Save')
+        %li= submit_tag('Save', class: 'btn')
     - else
-      %li= submit_tag('Take')
-    %li= submit_tag('Get a group')
+      %li= submit_tag('Take', class: 'btn')
+    %li= submit_tag('Get a group', class: 'btn')
 
   %table
     %tbody
       - @group.pages.each do |page|
         %tr
+          %td
+            %a{href: page.uri}= page.name
           - [:attributes, :audiences, :needs].each do |a|
             %td
               = render partial: 'taxonomy_tag', locals: {tax: a, page: page}

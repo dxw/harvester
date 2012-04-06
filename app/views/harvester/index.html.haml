@@ -1,8 +1,13 @@
-%ul
-  %li
-    %button Get a group
-  %li
-    %button Save
+.row-fluid
+  .span2
+    %ul
+      %li
+        %input.btn{type: 'button', value: 'Get a group'}
+      %li
+        %input.btn{type: 'button', value: 'Save'}
 
-%iframe{src: edit_group_path(1)}
-%iframe{name: :content}
+  .span10
+    %iframe{src: edit_group_path(1)}
+
+.row-fluid
+  %iframe.span12{name: :content}
