@@ -1,0 +1,4 @@
+
+% rake db:reset && echo "load 'manual-testing/seeds_test.rb'" | rails console
+
+http://localhost:3000/harvester/index

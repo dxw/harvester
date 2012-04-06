@@ -19,10 +19,11 @@
                   %a{href: new_user_session_path} Sign in
           - else
             = form_tag destroy_user_session_path, method: :delete, class: 'navbar-form pull-right' do
-              Signed in as
-              %strong
-                = current_user.email
-              = submit_tag 'Sign out', class: 'btn'
+              %p
+                Signed in as
+                %strong
+                  = current_user.email
+                = submit_tag 'Sign out', class: 'btn'
 
 
     .container-fluid
