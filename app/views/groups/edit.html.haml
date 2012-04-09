@@ -4,26 +4,27 @@
 = form_tag({action: :update, id: @group.id}, method: :put) do
   .row-fluid
     .span2
-      %ul
+      %h1= @group.name
+
+      %ul.buttons
         - if @group.taken?
           - if @group.taken_by? current_user
             %li= submit_tag('Save', class: 'btn')
         - else
-          %li= submit_tag('Take', class: 'btn')
+          %li= submit_tag('Take', class: 'btn btn-primary')
         %li= submit_tag('Get a group', class: 'btn')
 
     .span10
-      %h1= @group.name
-
-      %table.table.table-striped.table-condensed
-        %tbody
-          - @group.pages.each do |page|
-            %tr
-              %td
-                %a{href: page.uri, target: 'content'}= page.name
-              - [:attributes, :audiences, :needs].each do |a|
+      .table-container.table-bordered
+        %table.table.table-striped.table-condensed
+          %tbody
+            - @group.pages.each do |page|
+              %tr
                 %td
-                  = render partial: 'taxonomy_tag', locals: {tax: a, page: page}
+                  %a{href: page.uri, target: 'content'}= page.name
+                - [:attributes, :audiences, :needs].each do |a|
+                  %td
+                    = render partial: 'taxonomy_tag', locals: {tax: a, page: page}
 
 .row-fluid
   %iframe.span12{name: :content}
