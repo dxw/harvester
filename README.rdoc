@@ -3,3 +3,7 @@
   git checkout git@git.dxw.net:harvester-ng
   rake db:setup
   rails server
+
+=== Testing
+
+  rake db:reset && echo "load 'manual-testing/seeds_test.rb'" | rails console

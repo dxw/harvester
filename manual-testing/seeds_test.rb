@@ -2,20 +2,17 @@ user = User.create!(email: 'tom@dxw.com', password: 'foobar')
 
 department = Department.create!(name: 'Ministry of Peas')
 
-group = Group.create!(name: 'Broccoli')
+group1 = Group.create!(name: 'Broccoli')
+group2 = Group.create!(name: 'Cabbage')
 
 department.users << user
-department.groups << group
-
-Attribute.create!(name: 'a')
-Audience.create!( name: 'a')
-Need.create!(     name: 'a')
-Attribute.create!(name: 'b')
-Audience.create!( name: 'b')
-Need.create!(     name: 'b')
+department.groups << group1
+department.groups << group2
 
 (1..9).each do |a|
-  page = group.pages.create!(name: 'Link %d' % a, uri: 'http://example.org/%d' % a)
+  page = group1.pages.create!(name: 'Link %d' % a, uri: 'http://example.org/%d' % a)
 end
 
-Page.first.audiences << Audience.first
+(2..20).each do |a|
+  page = group2.pages.create!(name: '%d bottles of beer on the wall' % a, uri: 'http://example.org/%d' % a)
+end
