@@ -2,12 +2,7 @@ HarvesterNg::Application.routes.draw do
   post 'groups/get_a_group'
   resources :groups
 
-  get 'harvester/index'
-  post 'pages/update_multiple'
-
   devise_for :users
-
-  root controller: :harvester, action: :index
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
