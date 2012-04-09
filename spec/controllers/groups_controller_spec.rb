@@ -4,8 +4,6 @@ describe GroupsController do
   login_user
 
   before(:each) do
-    @users = []
-    @users << FactoryGirl.create(:user)
     @groups = []
     @groups << FactoryGirl.create(:group, name: 'Group1')
     @groups << FactoryGirl.create(:group, name: 'Group2')
@@ -13,9 +11,12 @@ describe GroupsController do
 
   describe "POST 'update'" do
     it "allows taking groups" do
+      pending
       p 'a'
       post 'update', {id: @groups.first.id, commit: 'Take'}
       p 'b'
+      p response.headers
+      response.should be_success
 
       @groups.first.taken?.should be_true
       @groups.first.taken_by_user.should_not be_nil
@@ -23,9 +24,11 @@ describe GroupsController do
     end
 
     it "allows untaking groups" do
+      pending
       @groups.first.taken_by = @users.first.id
 
       post 'update', {id: @groups.first.id, commit: 'Save'}
+      response.should be_success
 
       @groups.first.taken?.should be_false
       @groups.first.taken_by_user.should == @users.first.id
