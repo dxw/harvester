@@ -9,7 +9,7 @@
       %ul.buttons
         - if @group.taken?
           - if @group.taken_by? current_user
-            %li= submit_tag('Save', class: 'btn')
+            %li= submit_tag('Save', class: 'btn btn-primary')
         - else
           %li= submit_tag('Take', class: 'btn btn-primary')
         %li= submit_tag('Get a group', class: 'btn')

@@ -23,6 +23,8 @@ class GroupsController < ApplicationController
             end
 
             pp.set_tags(tax, tags)
+          else
+            pp.set_tags(tax, [])
           end
         end
       end
