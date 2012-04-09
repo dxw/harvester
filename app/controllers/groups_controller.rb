@@ -30,9 +30,7 @@ class GroupsController < ApplicationController
     end
 
     if params[:commit] == 'Get a group'
-      p 'taking a group'
-      @group = Group.next
-      @group.take! current_user
+      next_group!
     end
 
     if @group.nil?
@@ -40,6 +38,21 @@ class GroupsController < ApplicationController
     else
       redirect_to edit_group_path(@group.id)
     end
+  end
+
+  def get_a_group
+    next_group!
+
+    if @group.nil?
+      redirect_to groups_path
+    else
+      redirect_to edit_group_path(@group.id)
+    end
+  end
+
+  def next_group!
+    @group = Group.next
+    @group.take! current_user
   end
 
   def edit

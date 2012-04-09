@@ -2,12 +2,12 @@
   .span2
     %ul
       %li
-        %input.btn{type: 'button', value: 'Get a group'}
-      %li
-        %input.btn{type: 'button', value: 'Save'}
+        = form_tag(groups_get_a_group_path, method: :post, target: 'edit_group') do
+          = submit_tag('Get a group', class: 'btn')
+      %li#take-or-save
 
   .span10
-    %iframe{src: edit_group_path(1)}
+    %iframe{name: 'edit_group'}
 
 .row-fluid
   %iframe.span12{name: :content}
