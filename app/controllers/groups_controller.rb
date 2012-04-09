@@ -52,7 +52,7 @@ class GroupsController < ApplicationController
 
   def next_group!
     @group = Group.next
-    @group.take! current_user
+    @group.take! current_user if @group
   end
 
   def edit
