@@ -42,7 +42,7 @@ class Page < ActiveRecord::Base
   end
 
   def done?
-    taxonomies.values.map{|t|t[1]}.all? do |t|
+    taxonomies.values.map{|t|t[1]}.any? do |t|
       tags(t).length > 0
     end
   end
