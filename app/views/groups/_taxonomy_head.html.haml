@@ -1,0 +1,9 @@
+- tag = taxonomy_tag(tax)
+- case tag[:type]
+- when :checkboxes
+  %table.attributes
+    %tr
+      - tag[:cls].all.each do |a|
+        %td{:class => a.name}= a.name
+- when :text
+  = tag[:cls].name

@@ -20,20 +20,21 @@
           %thead
             %tr
               %th
+              - taxonomies_a.each do |a|
+                %th
+                  = render partial: 'taxonomy_head', locals: {tax: a}
+            %tr
               %th
-                %table.attributes
-                  %tr
-                    - taxonomy_tag(:attributes)[:cls].all.each do |a|
-                      %td{:class => a.name}=a.name
-              %th Audiences
-              %th Needs
+              - taxonomies_a.each do |a|
+                %th
+                  = render partial: 'taxonomy_meta', locals: {tax: a}
 
           %tbody
             - @group.pages.each do |page|
               %tr
                 %td
                   %a{href: page.uri, target: 'content'}= page.name
-                - [:attributes, :audiences, :needs].each do |a|
+                - taxonomies_a.each do |a|
                   %td
                     = render partial: 'taxonomy_tag', locals: {tax: a, page: page}
 
