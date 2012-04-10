@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :departments, join_table: :users_departments
   has_many :groups
+
+  def groups
+    departments.map{|d| d.groups }.flatten
+  end
 end
