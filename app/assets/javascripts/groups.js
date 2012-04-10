@@ -2,33 +2,47 @@
     'use strict'
 
     var metaCheckbox = function (meta, subord) {
-        meta = $(meta)
-        subord = $(subord)
+            this.meta = $(meta)
+            this.subord = $(subord)
+            this.__init__()
+        }
 
-        // Click this -> propogate to subordinates
-        meta.click(function () {
-            subord.each(function () {
-                $(this).prop('checked', meta.prop('checked'))
-            })
-        })
+    metaCheckbox.prototype.__init__ = function () {
+            var thus = this
 
-        // Click subordinate -> propogate to this
-        subord.click(function () {
-            var myValue = $(this).prop('checked'),
-                values = subord.map(function () {
-                    return $(this).prop('checked')
+            // Click this -> propogate to subordinates
+            this.meta.click(function () {
+                thus.subord.each(function () {
+                    $(this).prop('checked', thus.meta.prop('checked'))
                 })
+            })
 
-            if (_.all(values, function (a) { return a === myValue })) {
-                meta.prop('checked', myValue)
-                meta.prop('indeterminate', false)
-            } else {
-                meta.prop('indeterminate', true)
-            }
-        })
+            // Click subordinate -> propogate to this
+            this.subord.click(function () {
+                thus.updateMeta()
+            })
 
-        // Update meta checkbox initially
-        //TODO
+            // Update meta checkbox initially
+            this.updateMeta()
+        }
+
+    metaCheckbox.prototype.updateMeta = function () {
+        var values = this.subord.map(function () {
+                return $(this).prop('checked')
+            }),
+            result = (_.reduce(values, function (a, b) {
+                return a === null ? b : (a === b ? a : undefined)
+            }, null))
+
+        switch (result) {
+        case undefined:
+            this.meta.prop('indeterminate', true)
+            break
+        default:
+            this.meta.prop('checked', result)
+            this.meta.prop('indeterminate', false)
+            break
+        }
     }
 
     $(function () {
@@ -42,7 +56,7 @@
         $('body.groups.edit table.meta input').each(function () {
             var name = $(this).data('name')
 
-            metaCheckbox($(this), $('table.body input[data-name="'+name+'"]'))
+            new metaCheckbox($(this), $('table.body input[data-name="'+name+'"]'))
         })
     })
 })(jQuery)
