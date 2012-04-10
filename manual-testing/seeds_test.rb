@@ -1,4 +1,5 @@
 user = User.create!(email: 'tom@dxw.com', password: 'foobar')
+user = User.create!(email: 'harry@dxw.com', password: 'foobar')
 
 department = Department.create!(name: 'Ministry of Peas')
 
