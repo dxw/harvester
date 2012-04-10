@@ -14,4 +14,13 @@ class User < ActiveRecord::Base
   def groups
     departments.map{|d| d.groups }.flatten
   end
+
+  def next_group
+    groups.each do |g|
+      if g.available?
+        return g
+      end
+    end
+    nil
+  end
 end

@@ -41,10 +41,4 @@ class Group < ActiveRecord::Base
   def available?
     !done? && !taken?
   end
-
-  def self.next
-    Group.all.select do |g|
-      g.available?
-    end.first
-  end
 end

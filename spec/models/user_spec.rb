@@ -26,4 +26,23 @@ describe User do
     @user2.groups.should_not include(@group1)
   end
 
+  it "should return the next group available" do
+    a = FactoryGirl.create(:group, name: 'Swede')
+    FactoryGirl.create(:page_with_attributes, group_id: a.id)
+    b = FactoryGirl.create(:group, name: 'Rutabaga')
+    FactoryGirl.create(:page, group_id: b.id)
+    @department1.groups = [a, b]
+
+    @user1.next_group.should == b
+  end
+
+  it "should not return a group the user can't edit" do
+    a = FactoryGirl.create(:group, name: 'Swede')
+    FactoryGirl.create(:page_with_attributes, group_id: a.id)
+    b = FactoryGirl.create(:group, name: 'Rutabaga')
+    FactoryGirl.create(:page, group_id: b.id)
+
+    @user1.next_group.should be_nil
+  end
+
 end

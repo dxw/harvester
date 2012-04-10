@@ -2,13 +2,10 @@ require 'spec_helper'
 
 describe Group do
 
-  it "should return the next group available" do
-    a = FactoryGirl.create(:group, name: 'Swede')
-    FactoryGirl.create(:page_with_attributes, group_id: a.id)
-    b = FactoryGirl.create(:group, name: 'Rutabaga')
-    FactoryGirl.create(:page, group_id: b.id)
-
-    Group.next.should == b
+  before(:each) do
+    @user1 = FactoryGirl.create(:user)
+    @dept1 = FactoryGirl.create(:department)
+    @dept1.users = [@user1]
   end
 
   it "should allow itself to be taken" do
