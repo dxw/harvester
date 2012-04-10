@@ -2,7 +2,6 @@ class GroupsController < ApplicationController
   before_filter :authenticate_user!
 
   def update
-    p 'x'
     @group = Group.find(params[:id])
 
     if params[:commit] == 'Take'

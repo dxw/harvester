@@ -18,13 +18,21 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
 
 gem 'devise'
-gem 'rspec-rails'
-gem 'factory_girl_rails'
 gem 'haml'
-gem 'webrat'
-gem 'twitter-bootstrap-rails'
+
+group :production do
+  gem 'mysql2'
+end
+
+group :development do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'webrat'
+end
