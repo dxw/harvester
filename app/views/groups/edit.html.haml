@@ -17,6 +17,17 @@
     .span10
       .table-container.table-bordered
         %table.table.table-striped.table-condensed
+          %thead
+            %tr
+              %th
+              %th
+                %table.attributes
+                  %tr
+                    - taxonomy_tag(:attributes)[:cls].all.each do |a|
+                      %td=a.name
+              %th Audiences
+              %th Needs
+
           %tbody
             - @group.pages.each do |page|
               %tr
