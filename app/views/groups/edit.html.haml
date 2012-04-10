@@ -1,10 +1,10 @@
-- if @group.taken? && !(@group.taken_by? current_user)
-  %p Group is taken by somebody else.
-
 = form_tag({action: :update, id: @group.id}, method: :put) do
   .row-fluid
     .span2
       %h1= @group.name
+
+      - if @group.taken? && !(@group.taken_by? current_user)
+        %p.alert.alert-error Group is taken by somebody else.
 
       %ul.buttons
         - if @group.taken?
@@ -24,7 +24,7 @@
                 %table.attributes
                   %tr
                     - taxonomy_tag(:attributes)[:cls].all.each do |a|
-                      %td=a.name
+                      %td{:class => a.name}=a.name
               %th Audiences
               %th Needs
 
@@ -38,4 +38,4 @@
                     = render partial: 'taxonomy_tag', locals: {tax: a, page: page}
 
 .row-fluid
-  %iframe.span12{name: :content}
+  %iframe.span12{name: :content, id: :content}

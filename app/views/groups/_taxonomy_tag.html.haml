@@ -4,6 +4,6 @@
   %table.attributes
     %tr
       - tag[:cls].all.each do |a|
-        %td=check_box_tag('pages[%s][%s][%s]' % [page.id, tax, a.name], '1', page.has_tag?(tax, a.name), {disabled: !@group.taken_by?(current_user)})
+        %td{:class => a.name}=check_box_tag('pages[%s][%s][%s]' % [page.id, tax, a.name], '1', page.has_tag?(tax, a.name), {disabled: !@group.taken_by?(current_user)})
 - when :text
   = text_field_tag('pages[%s][%s]' % [page.id, tax], page.tags(tax).join(', '), {disabled: !@group.taken_by?(current_user)})
