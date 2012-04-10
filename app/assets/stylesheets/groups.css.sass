@@ -2,39 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-ul.buttons
-  list-style-type: none
-  margin: 10px 0 0
+body.groups
+  #group
+    .table-container .table
+      margin-bottom: 0
 
-  li
-    margin-bottom: 10px
+    .table-container
+      overflow-y: scroll
+      height: 150px
 
-.table-container .table
-  margin-bottom: 0
+    table.attributes td
+      width: 35px
+      padding: 0
+      border: none
+      background-color: inherit !important
 
-.table-container
-  overflow-y: scroll
-  height: 150px
+      &.cit, &.biz, &.ret
+        width: 25px
 
-table.attributes td
-  width: 35px
-  padding: 0
-  border: none
-  background-color: inherit !important
+      &.bl, &.wh 
+        width: 20px
 
-  &.cit, &.biz, &.ret
-    width: 25px
+    input 
+      margin: 0
+      font-size: 10px
+      line-height: 10px
+      height: 14px
 
-  &.bl, &.wh 
-    width: 20px
+      padding: 2px
 
-input 
-  margin: 0
-  font-size: 10px
-  line-height: 10px
-  height: 14px
-
-  padding: 2px
-
-  &[type="checkbox"]
-    margin: 0
+      &[type="checkbox"]
+        margin: 0
