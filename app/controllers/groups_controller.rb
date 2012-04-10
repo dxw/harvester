@@ -1,6 +1,10 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
 
+  def index
+    @groups = current_user.departments.first.groups.all
+  end
+
   def update
     @group = Group.find(params[:id])
 

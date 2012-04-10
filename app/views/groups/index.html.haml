@@ -1,0 +1,5 @@
+.row-fluid
+  %h2 Groups
+  %ul
+    - @groups.each do |group|
+      %li=link_to(group.name, edit_group_path(group))
