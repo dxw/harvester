@@ -6,8 +6,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
     if params[:commit] == 'Take'
-      @group.taken_by = current_user
-      @group.save!
+      @group.take! current_user
     elsif ((params[:commit] == 'Save') || (params[:commit] == 'Get a group')) && @group.taken_by?(current_user)
       @group.taken_by = nil
 
