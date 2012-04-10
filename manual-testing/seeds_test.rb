@@ -1,5 +1,6 @@
 user1 = User.create!(email: 'tom@dxw.com', password: 'foobar')
 user2 = User.create!(email: 'harry@dxw.com', password: 'foobar')
+user3 = User.create!(email: 'peter.herlihy@digital.cabinet-office.gov.uk', password: 'gdsferretarmy')
 
 department = Department.create!(name: 'Ministry of Peas')
 
@@ -8,6 +9,7 @@ group2 = Group.create!(name: 'Cabbage')
 
 department.users << user1
 department.users << user2
+department.users << user3
 department.groups << group1
 department.groups << group2
 
