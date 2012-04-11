@@ -4,20 +4,7 @@ module GroupsHelper
   end
 
   def taxonomies
-    {
-      attributes: {
-        cls: ::Attribute,
-        type: :checkboxes
-      },
-      audiences: {
-        cls: ::Audience,
-        type: :text
-      },
-      needs: {
-        cls: ::Need,
-        type: :text
-      }
-    }
+    HarvesterNg::Application.config.taxonomies
   end
 
   def taxonomies_a
