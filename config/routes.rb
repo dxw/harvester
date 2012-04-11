@@ -1,6 +1,6 @@
 HarvesterNg::Application.routes.draw do
-  post 'groups/get_a_group'
-  resources :groups do
+  resources :groups, only: [:edit, :update, :index] do
+    post :get_a_group, on: :collection
     get :autocomplete_audience_name, on: :collection
     get :autocomplete_need_name, on: :collection
   end
