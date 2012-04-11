@@ -4,6 +4,8 @@ user3 = User.create!(email: 'peter.herlihy@digital.cabinet-office.gov.uk', passw
 
 department = Department.create!(name: 'Ministry of Peas')
 
+
+
 group1 = Group.create!(name: 'Broccoli')
 group2 = Group.create!(name: 'Cabbage')
 
