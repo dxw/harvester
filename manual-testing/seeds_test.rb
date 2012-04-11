@@ -1,24 +1,22 @@
-user1 = User.create!(email: 'tom@dxw.com', password: 'foobar')
-user2 = User.create!(email: 'harry@dxw.com', password: 'foobar')
-user3 = User.create!(email: 'peter.herlihy@digital.cabinet-office.gov.uk', password: 'gdsferretarmy')
-
 department = Department.create!(name: 'Ministry of Peas')
 
+department.users << User.create!(email: 'tom@dxw.com', password: 'foobar')
+department.users << User.create!(email: 'harry@dxw.com', password: 'foobar')
+department.users << User.create!(email: 'peter.herlihy@digital.cabinet-office.gov.uk', password: 'gdsferretarmy')
 
 
-group1 = Group.create!(name: 'Broccoli')
-group2 = Group.create!(name: 'Cabbage')
+vegetables = ['broccoli', 'cabbage', 'potato', 'carrot', 'peas', 'spinach', 'beans', 'peppers', 'sprouts']
+dishes = ['chowder', 'soup', 'roasties', 'cassarole', 'mash']
 
-department.users << user1
-department.users << user2
-department.users << user3
-department.groups << group1
-department.groups << group2
 
-(1..9).each do |a|
-  page = group1.pages.create!(name: 'Link %d' % a, uri: 'http://example.org/%d' % a)
+20.times do
+  group = Group.create!(name: "#{vegetables.sample} and #{vegetables.sample} #{dishes.sample}")
+
+  rand(1..20).times do
+    name = Faker::Lorem.sentence
+    group.pages.create!(name: name, uri: "http://example.com/#{name.gsub(/\s+/, '/').downcase}")
+  end
+
+  department.groups << group
 end
 
-(2..20).each do |a|
-  page = group2.pages.create!(name: '%d bottles of beer on the wall' % a, uri: 'http://example.org/%d' % a)
-end
