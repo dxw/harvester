@@ -4,6 +4,16 @@
   rake db:setup
   rails server
 
-=== Testing
+=== Configuration
+
+config/initializers/secrets.rb:
+
+  # Currently only username/password auth is supported
+  HarvesterNg::Application.config.google_docs = {
+    username: 'a-user@dxw.com',
+    password: 'password1'
+  }
+
+=== Load test data
 
   rake db:reset && echo "load 'manual-testing/seeds_test.rb'" | rails console
