@@ -26,6 +26,7 @@ gem 'jquery-rails'
 
 gem 'devise'
 gem 'haml'
+gem 'rails3-jquery-autocomplete'
 
 gem 'faker'
 

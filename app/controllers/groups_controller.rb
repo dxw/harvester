@@ -1,6 +1,9 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
 
+  autocomplete :audience, :name
+  autocomplete :need, :name
+
   def index
     @groups = current_user.groups
   end
