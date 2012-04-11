@@ -27,7 +27,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
 gem 'rails3-jquery-autocomplete'
-gem 'google-spreadsheet-ruby'
+gem 'google-spreadsheet-ruby', require: 'google_spreadsheet'
+gem 'nokogiri', '< 1.5.1' # For google-spreadsheet-ruby
 
 gem 'faker'
 
