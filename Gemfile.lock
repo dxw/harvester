@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.3)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.2.7)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -48,6 +49,14 @@ GEM
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
+    google-spreadsheet-ruby (0.1.8)
+      nokogiri (>= 1.4.3.1)
+      oauth (>= 0.3.6)
+      oauth2 (>= 0.5.0)
     haml (3.1.4)
     hike (1.2.1)
     i18n (0.6.0)
@@ -69,8 +78,13 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    multipart-post (1.1.5)
     mysql2 (0.3.11)
     nokogiri (1.5.2)
+    oauth (0.4.5)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
     orm_adapter (0.0.7)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -153,6 +167,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  google-spreadsheet-ruby
   haml
   jquery-rails
   mysql2

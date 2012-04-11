@@ -5,6 +5,10 @@ HarvesterNg::Application.routes.draw do
     get :autocomplete_need_name, on: :collection
   end
 
+  resource :export, only: [:show] do
+    get :to_gdocs
+  end
+
   devise_for :users
 
   match '/' => redirect('/groups')

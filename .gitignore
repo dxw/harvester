@@ -15,3 +15,4 @@
 /tmp
 
 webrat.log
+config/initializers/secrets.rb
