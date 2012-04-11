@@ -27,6 +27,8 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
 
+gem 'faker'
+
 group :production do
   gem 'mysql2'
 end
