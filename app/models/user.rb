@@ -16,11 +16,10 @@ class User < ActiveRecord::Base
   end
 
   def next_group
-    groups.each do |g|
-      if g.available?
-        return g
-      end
-    end
-    nil
+    available_groups = groups.select{|g| g.available?}
+
+    return nil if available_groups.empty?
+
+    available_groups.sample
   end
 end

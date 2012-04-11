@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
 
-    if params[:commit] == 'Take'
+    if params[:commit] == 'Edit'
       @group.take! current_user
     elsif ((params[:commit] == 'Save') || (params[:commit] == 'Next group')) && @group.taken_by?(current_user)
       @group.taken_by = nil
