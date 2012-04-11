@@ -11,6 +11,10 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
 
+    unless current_user.can_edit? @group
+      redirect_to groups_path
+    end
+
     if params[:commit] == 'Edit'
       @group.take! current_user
     elsif ((params[:commit] == 'Save') || (params[:commit] == 'Next group')) && @group.taken_by?(current_user)
@@ -65,5 +69,9 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+
+    unless current_user.can_edit? @group
+      redirect_to groups_path
+    end
   end
 end

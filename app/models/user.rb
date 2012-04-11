@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
 
     available_groups.sample
   end
+
+  def can_edit? group
+    groups.include? group
+  end
 end

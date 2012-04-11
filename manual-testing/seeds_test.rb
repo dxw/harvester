@@ -20,3 +20,25 @@ dishes = ['chowder', 'soup', 'roasties', 'cassarole', 'mash']
   department.groups << group
 end
 
+####
+
+department = Department.create!(name: 'Ministry of Juice')
+
+department.users << User.create!(email: 'kool-aid@dxw.com', password: 'foobar')
+
+
+vegetables = ['bak-choi', 'lotus root', 'butternut squash']
+dishes = ['curry', 'creme brule']
+
+
+20.times do
+  group = Group.create!(name: "#{vegetables.sample} and #{vegetables.sample} #{dishes.sample}")
+
+  rand(1..20).times do
+    name = Faker::Lorem.sentence
+    group.pages.create!(name: name, uri: "http://example.com/#{name.gsub(/\s+/, '/').downcase}")
+  end
+
+  department.groups << group
+end
+
