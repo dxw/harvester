@@ -35,6 +35,8 @@ class ExportsController < ApplicationController
 
     header = []
     header << 'Group'
+    header << 'Name'
+    header << 'URL'
 
     each_tax do |tax,tag|
       case tag[:type]
@@ -53,6 +55,8 @@ class ExportsController < ApplicationController
     Page.all.each do |page|
       line = []
       line << page.group.name
+      line << page.name
+      line << page.uri
 
       each_tax do |tax,tag|
         case tag[:type]
