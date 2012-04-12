@@ -27,7 +27,9 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
 gem 'rails3-jquery-autocomplete'
-gem 'google-spreadsheet-ruby', require: 'google_spreadsheet'
+# Add the gem so we have the dependencies, but don't load it
+# gem 'google-spreadsheet-ruby', require: 'google_spreadsheet'
+gem 'google-spreadsheet-ruby'
 gem 'nokogiri', '< 1.5.1' # For google-spreadsheet-ruby
 
 gem 'faker'

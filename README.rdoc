@@ -9,9 +9,11 @@
 config/initializers/secrets.rb:
 
   # Currently only username/password auth is supported
+  # :collection is optional - it'll just put it in "Home" if it's not specified
   HarvesterNg::Application.config.google_docs = {
     username: 'a-user@dxw.com',
-    password: 'password1'
+    password: 'password1',
+    collection: 'https://docs.google.com/?pli=1#folders/0B-IQ-sqhJerMR1A0VHBGZWlGbmc'
   }
 
 === Load test data

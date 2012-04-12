@@ -5,7 +5,13 @@ class ExportsController < ApplicationController
   def to_gdocs
     session = GoogleSpreadsheet.login(HarvesterNg::Application::config.google_docs[:username], HarvesterNg::Application::config.google_docs[:password])
     datetime = Time.zone.now.strftime('%Y-%m-%d %H:%M %Z')
+
     spreadsheet = session.create_spreadsheet("Harvester #{datetime}")
+
+    if HarvesterNg::Application::config.google_docs[:collection]
+      collection = session.collection_by_url(HarvesterNg::Application::config.google_docs[:collection])
+      collection.add(spreadsheet)
+    end
 
     ws = spreadsheet.worksheets.first
 

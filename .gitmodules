@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/google-spreadsheet-ruby"]
+	path = vendor/plugins/google-spreadsheet-ruby
+	url = https://github.com/gimite/google-spreadsheet-ruby.git
