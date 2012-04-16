@@ -23,7 +23,7 @@ class GroupsController < ApplicationController
         [:attributes, :audiences, :needs].each do |tax|
           if page[tax]
             if page[tax].is_a? String
-              tags = page[tax].split(',').map{|s|s.strip}
+              tags = page[tax].split(',').map{|s|s.strip}.select{|s|s.length > 0}
             elsif page[tax].is_a? Hash
               tags = page[tax].keys
             else
