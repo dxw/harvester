@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  autocomplete :audience, :name
-  autocomplete :need, :name
+  autocomplete :audience, :name, full: true
+  autocomplete :need, :name, full: true
 
   def index
     @groups = current_user.groups
