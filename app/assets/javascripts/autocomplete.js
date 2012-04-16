@@ -46,6 +46,7 @@
       }
 
       jQuery(e).autocomplete({
+        autoFocus: true,
         source: function( request, response ) {
           jQuery.getJSON( jQuery(e).attr('data-autocomplete'), {
             term: extractLast( request.term )
