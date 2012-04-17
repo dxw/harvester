@@ -23,20 +23,13 @@
                 %td
                   %a{:href => page.uri, :target => '_blank'}=page.name
                 %td
-                  %ul
-                    - page.attributes.each do |attr|
-                      %li=attr.name
+                  %input.editable_list{:id => "attributes_#{page.id}", :name => "attributes_#{page.id}", :value => page.attributes.collect{|a| a.name}.join(',')}
                 %td
-                  %ul.editable_list
-                    - page.needs.each do |need|
-                      - next if need == @need
-                      %li=need.name
+                  %input.editable_list{:id => "needs_#{page.id}", :name => "needs_#{page.id}", :value => page.needs.collect{|n| n.name unless n == @need}.join(',')}
                 %td
-                  %ul.editable_list
-                    - page.audiences.each do |audience|
-                      %li=audience.name
+                  %input.editable_list{:id => "audiences_#{page.id}", :name => "audiences_#{page.id}", :value => page.audiences.collect{|a| a.name}.join(',')}
                 %td
-                  %ul.editable_list
+                  /%input.editable_list{:id => "new_pages_#{page.id}", :name => "new_pages_#{page.id}", :value => page.new_pages.collect{|a| a.name}.join(',')}
 
   .row-fluid
     .span8
