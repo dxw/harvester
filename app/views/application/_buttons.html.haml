@@ -1,0 +1,10 @@
+- if resource.taken?
+  - if !resource.taken_by?(current_user)
+    %p.alert.alert-error 
+      This #{resource.class.name} is currently owned by #{resource.taken_by_user.email}.
+  - else
+    =submit_tag('Save', class: 'btn btn-primary')
+- else
+  =submit_tag('Edit', class: 'btn btn-primary')
+
+=submit_tag('Next group', class: 'btn')

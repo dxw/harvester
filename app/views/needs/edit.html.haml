@@ -3,8 +3,7 @@
     .span8
       %h1= @need.name
     .span4.button-area
-      =submit_tag('Save', :class => 'btn btn-secondary')
-      =submit_tag('Save & continue', :class => 'btn btn-primary')
+      = buttons_for @need
 
   .row-fluid
     #need.span12
@@ -34,5 +33,4 @@
     .span8
       &nbsp;
     .span4.button-area
-      =submit_tag('Save', :class => 'btn btn-secondary')
-      =submit_tag('Save & continue', :class => 'btn btn-primary')
+      = buttons_for @need
