@@ -1,5 +1,5 @@
 class NeedsController < ApplicationController
   def edit
-    @need = Need.all.first
+    @need = Need.find(params[:id])
   end
 end
