@@ -27,15 +27,16 @@
                     - page.attributes.each do |attr|
                       %li=attr.name
                 %td
-                  %ul
+                  %ul.editable_list
                     - page.needs.each do |need|
                       - next if need == @need
                       %li=need.name
                 %td
-                  %ul
+                  %ul.editable_list
                     - page.audiences.each do |audience|
                       %li=audience.name
                 %td
+                  %ul.editable_list
 
   .row-fluid
     .span8
