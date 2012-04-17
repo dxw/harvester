@@ -1,0 +1,45 @@
+= form_tag({action: :update, id: @need.id}, method: :put) do
+  .row-fluid
+    .span8
+      %h1= @need.name
+    .span4
+      =submit_tag('Save', :class => 'btn btn-secondary')
+      =submit_tag('Save & continue', :class => 'btn btn-primary')
+
+  .row-fluid
+    #need.span10
+      .table-container.table-bordered
+        %table.table.table-striped.table-condensed
+          %thead
+            %tr
+              %th Original URL
+              %th Propositions
+              %th Other needs
+              %th Audiences
+              %th New URLs
+          %tbody
+            - @need.pages.each do |page|
+              %tr
+                %td
+                  %a{:href => page.uri, :target => '_blank'}=page.name
+                %td
+                  %ul
+                    - page.attributes.each do |attr|
+                      %li=attr.name
+                %td
+                  %ul
+                    - page.needs.each do |need|
+                      - next if need == @need
+                      %li=need.name
+                %td
+                  %ul
+                    - page.audiences.each do |audience|
+                      %li=audience.name
+                %td
+
+  .row-fluid
+    .span8
+      &nbsp;
+    .span4
+      =submit_tag('Save', :class => 'btn btn-secondary')
+      =submit_tag('Save & continue', :class => 'btn btn-primary')

@@ -5,6 +5,8 @@ HarvesterNg::Application.routes.draw do
     get :autocomplete_need_name, on: :collection
   end
 
+  resources :needs, only: [:edit, :update, :index]
+
   resource :export, only: [:show] do
     get :to_gdocs
   end
