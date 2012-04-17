@@ -3,12 +3,12 @@ HarvesterNg::Application.config.taxonomies = {
     cls: ::Attribute,
     type: :checkboxes
   },
-  audiences: {
-    cls: ::Audience,
-    type: :text
-  },
   needs: {
     cls: ::Need,
+    type: :text
+  },
+  audiences: {
+    cls: ::Audience,
     type: :text
   }
 }
