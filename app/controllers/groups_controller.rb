@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
   def edit
     @group = Group.find(params[:id])
 
-    unless current_user.can_edit? @group
+    unless current_user.can_edit_group? @group
       redirect_to groups_path
     end
   end

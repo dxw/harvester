@@ -46,8 +46,8 @@ describe User do
   end
 
   it "should check if a user can edit a group" do
-    @user1.can_edit?(@group1).should be_true
-    @user2.can_edit?(@group1).should be_false
+    @user1.can_edit_group?(@group1).should be_true
+    @user2.can_edit_group?(@group1).should be_false
   end
 
 end

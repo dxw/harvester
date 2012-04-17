@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     def update
       @resource = @@resource_class.find(params[:id])
 
-      unless current_user.can_edit? @resource
+      unless current_user.send("can_edit_#{@@resource_name}}?", @resource)
         redirect_to send("#{@@resource_name}s_path")
       end
 
