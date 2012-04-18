@@ -26,11 +26,11 @@
                     %input{id: "proposition_#{page.id}_#{a.name}", type: 'checkbox', data: {name: "#{:attributes}::#{a.name}"}}
                     =a.name
               %td.needs
-                %input.editable_list{:id => "needs_#{page.id}", :placeholder => 'Add...', :name => "needs_#{page.id}", :value => page.needs.collect{|n| n.name unless n == @need}.join(',')}
+                = autocomplete_field_tag("needs_#{page.id}", page.needs.collect{|n| n.name unless n == @need}.join(','), autocomplete_need_name_department_needs_path, {:placeholder => "Add...", :class => "editable_list"})
               %td.audiences
-                %input.editable_list{:id => "audiences_#{page.id}", :placeholder => 'Add...', :name => "audiences_#{page.id}", :value => page.audiences.collect{|a| a.name}.join(',')}
+                = autocomplete_field_tag("audiences_#{page.id}", page.audiences.collect{|a| a.name}.join(','), autocomplete_audience_name_department_needs_path, {:placeholder => "Add...", :class => "editable_list"})
               %td.new_pages
-                %input.editable_list{:id => "new_pages_#{page.id}", :name => "new_pages_#{page.id}", :value => page.new_pages.collect{|a| a.name}.join(',')}
+                = autocomplete_field_tag("new_pages_#{page.id}", page.new_pages.collect{|p| p.uri}.join(','), autocomplete_new_page_uri_department_needs_path, {:placeholder => "Add...", :class => "editable_list"})
 
   .row-fluid
     .span8

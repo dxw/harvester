@@ -6,7 +6,11 @@ HarvesterNg::Application.routes.draw do
   end
 
   resources :departments, only: [] do
-    resources :needs, only: [:edit, :update, :index]
+    resources :needs, only: [:edit, :update, :index] do
+      get :autocomplete_audience_name, on: :collection
+      get :autocomplete_need_name, on: :collection
+      get :autocomplete_new_page_uri, on: :collection
+    end
   end
 
   resource :export, only: [:show] do
