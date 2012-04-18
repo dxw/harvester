@@ -18,16 +18,19 @@
         %tbody
           - @need.pages.each do |page|
             %tr
-              %td
+              %td.page
                 %a{:href => page.uri, :target => '_blank'}=page.name
-              %td
-                %input.editable_list{:id => "attributes_#{page.id}", :placeholder => 'Add...', :name => "attributes_#{page.id}", :value => page.attributes.collect{|a| a.name}.join(',')}
-              %td
+              %td.propositions
+                - taxonomy_tag(:attributes)[:cls].all.each do |a|
+                  %label{:for => "proposition_#{page.id}_#{a.name}"}
+                    %input{id: "proposition_#{page.id}_#{a.name}", type: 'checkbox', data: {name: "#{:attributes}::#{a.name}"}}
+                    =a.name
+              %td.needs
                 %input.editable_list{:id => "needs_#{page.id}", :placeholder => 'Add...', :name => "needs_#{page.id}", :value => page.needs.collect{|n| n.name unless n == @need}.join(',')}
-              %td
+              %td.audiences
                 %input.editable_list{:id => "audiences_#{page.id}", :placeholder => 'Add...', :name => "audiences_#{page.id}", :value => page.audiences.collect{|a| a.name}.join(',')}
-              %td
-                /%input.editable_list{:id => "new_pages_#{page.id}", :name => "new_pages_#{page.id}", :value => page.new_pages.collect{|a| a.name}.join(',')}
+              %td.new_pages
+                %input.editable_list{:id => "new_pages_#{page.id}", :name => "new_pages_#{page.id}", :value => page.new_pages.collect{|a| a.name}.join(',')}
 
   .row-fluid
     .span8
