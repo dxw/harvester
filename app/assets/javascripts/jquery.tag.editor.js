@@ -120,7 +120,8 @@ Joost Elfering
                         if (!confirm(options.confirmRemovalText))
                         return;
 
-                    item.remove();
+                    item.css('backgroundColor', '#f00')
+                    item.animate({opacity: '0'}, 500, function() { item.remove(); })
                     parse();
                 });
 
