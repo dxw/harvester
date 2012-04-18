@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
       elsif ((params[:commit] == 'Save') || (params[:commit].start_with?('Next'))) && @resource.taken_by?(current_user)
         @resource.taken_by = nil
 
-        update_resource
+        update_taxonomies
 
         @resource.save!
       end
@@ -53,8 +53,25 @@ class ApplicationController < ActionController::Base
       raise NotImplementedError
     end
 
-    def update_resource
-      raise NotImplementedError
+    def update_taxonomies
+      params[:pages].each do |id,page|
+        pp = Page.find(id)
+        [:attributes, :audiences, :needs].each do |tax|
+          if page[tax]
+            if page[tax].is_a? String
+              tags = page[tax].split(',').map{|s|s.strip}.select{|s|s.length > 0}
+            elsif page[tax].is_a? Hash
+              tags = page[tax].keys
+            else
+              raise NotImplementedError
+            end
+
+            pp.set_tags(tax, tags)
+          else
+            pp.set_tags(tax, [])
+          end
+        end
+      end
     end
   end
 end
