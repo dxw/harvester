@@ -5,6 +5,11 @@ class NeedsController < ApplicationController
 
   takable_resource :need
 
+  def update_page page, formdata
+    p page
+    p formdata
+  end
+
   ###
 
   def edit

@@ -10,7 +10,12 @@ class ApplicationController < ActionController::Base
       @resource = @@resource_class.find(params[:id])
 
       unless current_user.send("can_edit_#{@@resource_name}?", @resource)
-        redirect_to send("#{@@resource_name}s_path")
+        if @@resource_name == :group #TODO: modify once group is within department
+          redirect_to send("#{@@resource_name}s_path")
+        else
+          redirect_to send("department_#{@@resource_name}s_path")
+        end
+        return
       end
 
       if params[:commit] == 'Edit'
@@ -28,9 +33,19 @@ class ApplicationController < ActionController::Base
       end
 
       if @resource.nil?
-        redirect_to send("#{@@resource_name}s_path")
+        if @@resource_name == :group #TODO: modify once group is within department
+          redirect_to send("#{@@resource_name}s_path")
+        else
+          redirect_to send("department_#{@@resource_name}s_path")
+        end
+        return
       else
-        redirect_to send("edit_#{@@resource_name}_path", @resource.id)
+        if @@resource_name == :group #TODO: modify once group is within department
+          redirect_to send("edit_#{@@resource_name}_path", @resource.id)
+        else
+          redirect_to send("edit_department_#{@@resource_name}_path", @resource.id)
+        end
+        return
       end
     end
 
@@ -40,7 +55,11 @@ class ApplicationController < ActionController::Base
       if @resource.nil?
         redirect_to send("#{@@resource_name}s_path")
       else
-        redirect_to send("edit_#{@@resource_name}_path", @resource.id)
+        if @@resource_name == :group #TODO: modify once group is within department
+          redirect_to send("edit_#{@@resource_name}_path", @resource.id)
+        else
+          redirect_to send("edit_department_#{@@resource_name}_path", @resource.id)
+        end
       end
     end
 
@@ -71,7 +90,12 @@ class ApplicationController < ActionController::Base
             pp.set_tags(tax, [])
           end
         end
+
+        update_page pp, page
       end
     end
+  end
+
+  def update_page page, formdata
   end
 end
