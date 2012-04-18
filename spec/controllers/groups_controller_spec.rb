@@ -13,7 +13,6 @@ describe GroupsController do
     it "allows taking groups" do
       pending
       post 'update', {id: @groups.first.to_param, commit: 'Take'}
-      p subject.current_user
       response.should be_redirect
       response.headers['Location'].should == "http://test.host/groups/#{@groups.first.id}/edit"
 
