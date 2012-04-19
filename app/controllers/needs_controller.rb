@@ -22,5 +22,9 @@ class NeedsController < ApplicationController
 
   def edit
     @need = Need.find(params[:id])
+
+    unless current_user.can_edit_need? @need
+      redirect_to send("department_needs_path")
+    end
   end
 end
