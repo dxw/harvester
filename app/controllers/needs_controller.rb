@@ -6,8 +6,16 @@ class NeedsController < ApplicationController
   takable_resource :need
 
   def update_page page, formdata
-    p page
-    p formdata
+    page.needs << @resource
+
+    formdata[:new_pages].split(',').map{|s|s.strip}.each do |new_page|
+      np = NewPage.find_by_uri(new_page)
+      if np
+        page.new_pages << np
+      else
+        page.new_pages.create!(uri: new_page)
+      end
+    end
   end
 
   ###

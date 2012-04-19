@@ -26,14 +26,11 @@
                     %input{id: "proposition_#{page.id}_#{a.name}", type: 'checkbox', data: {name: "#{:attributes}::#{a.name}"}}
                     =a.name
               %td.needs
-                = text_field_tag("pages[#{page.id}][needs]", page.needs.collect{|n| n.name unless n == @need}.join(','), {id: "needs_#{page.id}"})
-                = autocomplete_field_tag("pages[#{page.id}][needs]", page.needs.collect{|n| n.name unless n == @need}.join(','), autocomplete_need_name_department_needs_path, {placeholder: "Add...", class: "editable_list", data: {for: "needs_#{page.id}"}})
+                = autocomplete_field_tag("pages[#{page.id}][needs]", page.needs.collect{|n| n.name unless n == @need}.join(','), autocomplete_need_name_department_needs_path, {placeholder: "Add...", class: "editable_list", data: {for: "needs_#{page.id}"}, disabled: !@need.taken_by?(current_user)})
               %td.audiences
-                = text_field_tag("pages[#{page.id}][audiences]", page.audiences.collect{|a| a.name}.join(','), {id: "audiences_#{page.id}"})
-                = autocomplete_field_tag("pages[#{page.id}][audiences]", page.audiences.collect{|a| a.name}.join(','), autocomplete_audience_name_department_needs_path, {placeholder: "Add...", class: "editable_list", data: {for: "audiences_#{page.id}"}})
+                = autocomplete_field_tag("pages[#{page.id}][audiences]", page.audiences.collect{|a| a.name}.join(','), autocomplete_audience_name_department_needs_path, {placeholder: "Add...", class: "editable_list", data: {for: "audiences_#{page.id}"}, disabled: !@need.taken_by?(current_user)})
               %td.new_pages
-                = text_field_tag("pages[#{page.id}][new_pages]", page.new_pages.collect{|p| p.uri}.join(','), {id: "new_pages_#{page.id}"})
-                = autocomplete_field_tag("pages[#{page.id}][new_pages]", page.new_pages.collect{|p| p.uri}.join(','), autocomplete_new_page_uri_department_needs_path, {placeholder: "Add...", class: "editable_list", data: {for: "new_pages_#{page.id}"}})
+                = autocomplete_field_tag("pages[#{page.id}][new_pages]", page.new_pages.collect{|p| p.uri}.join(','), autocomplete_new_page_uri_department_needs_path, {placeholder: "Add...", class: "editable_list", data: {for: "new_pages_#{page.id}"}, disabled: !@need.taken_by?(current_user)})
 
   .row-fluid
     .span8

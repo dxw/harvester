@@ -7,6 +7,8 @@ department.users << User.create!(email: 'peter.herlihy@digital.cabinet-office.go
 
 vegetables = ['broccoli', 'cabbage', 'potato', 'carrot', 'peas', 'spinach', 'beans', 'peppers', 'sprouts']
 dishes = ['chowder', 'soup', 'roasties', 'cassarole', 'mash']
+northern_places = ['South Dakota', 'South Africa', 'South Sudan', 'South Korea', 'South Carolina']
+southern_places = ['North Dakota', 'North Korea', 'North Carolina']
 
 
 20.times do
@@ -14,7 +16,13 @@ dishes = ['chowder', 'soup', 'roasties', 'cassarole', 'mash']
 
   rand(20).times do
     name = Faker::Lorem.sentence
-    group.pages.create!(name: name, uri: "http://example.com/#{name.gsub(/\s+/, '/').downcase}")
+    page = group.pages.create!(name: name, uri: "http://example.com/#{name.gsub(/\s+/, '/').downcase}")
+    3.times do
+      page.needs.create!(name: northern_places.sample)
+    end
+    3.times do
+      page.audiences.create!(name: southern_places.sample)
+    end
   end
 
   department.groups << group
