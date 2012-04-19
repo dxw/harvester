@@ -18,13 +18,20 @@ class NeedsController < ApplicationController
     end
   end
 
+  def department_and_need_match
+    unless @need.pages.map{|p|p.group}.map{|g|g.departments.map{|d|d.id}}.flatten.include? params[:department_id].to_i
+      redirect_to department_needs_path
+    end
+  end
+
   ###
 
   def edit
     @need = Need.find(params[:id])
+    department_and_need_match
 
     unless current_user.can_edit_need? @need
-      redirect_to send("department_needs_path")
+      redirect_to department_needs_path
     end
   end
 end
