@@ -14,11 +14,7 @@ class ApplicationController < ActionController::Base
       @resource = @@resource_class.find(params[:id])
 
       unless current_user.send("can_edit_#{@@resource_name}?", @resource)
-        if @@resource_name == :group #TODO: modify once group is within department
-          redirect_to send("#{@@resource_name}s_path")
-        else
-          redirect_to send("department_#{@@resource_name}s_path")
-        end
+        redirect_to send("department_#{@@resource_name}s_path")
         return
       end
 

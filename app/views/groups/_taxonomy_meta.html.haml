@@ -1,9 +1,0 @@
-- tag = taxonomy_tag(tax)
-- case tag[:type]
-- when :checkboxes
-  %table.attributes.meta
-    %tr
-      - tag[:cls].all.each do |a|
-        %td{:class => a.name}
-          %input{type: 'checkbox', data: {name: "#{tax}::#{a.name}"}, disabled: !@group.taken_by?(current_user)}
-- when :text

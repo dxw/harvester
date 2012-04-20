@@ -28,4 +28,12 @@ describe Page do
     @page.tags(:needs).should == ['a', 'b', 'x', 'y']
   end
 
+  it "should not be able to set more than one auidence/need" do
+    @page.set_tags(:audiences, ['a', 'b', 'a'])
+    @page.tags(:audiences).should == ['a', 'b']
+
+    @page.set_tags(:needs, ['b', 'b', 'a'])
+    @page.tags(:needs).should == ['b', 'a']
+  end
+
 end
