@@ -65,7 +65,7 @@ Joost Elfering
             hiddenText.attr('type', 'hidden');
             if (options.continuousOutputBuild) {
                 hiddenText.attr('name', textBase.attr('name'));
-                textBase.attr('name', textBase.attr('name') + '_old');
+                textBase.removeAttr('name');
             }
             textBase.after(hiddenText);
 
@@ -97,7 +97,7 @@ Joost Elfering
                     hiddenText.attr('id', textBase.attr('id'));
                     hiddenText.attr("name", textBase.attr('name'));
                     textBase.attr('id', textBase.attr('id') + '_old');
-                    textBase.attr('name', textBase.attr('name') + '_old');
+                    textBase.removeAttr('name');
 
                 });
             }
