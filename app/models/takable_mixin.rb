@@ -27,4 +27,12 @@ module TakableMixin
   def taken_by? user
     taken_by == user.id
   end
+
+  def done?
+    raise NotImplementedError
+  end
+
+  def available?
+    !done? && !taken?
+  end
 end

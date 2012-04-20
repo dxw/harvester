@@ -8,7 +8,14 @@ class Need < ActiveRecord::Base
   validates_uniqueness_of :name
 
   # Override TakableMixin
+
   def users_who_can_take_me
     pages.map {|p| p.group.departments.map {|d| d.users }}.flatten
+  end
+
+  def done?
+    pages.all? do |p|
+      !p.new_pages.empty?
+    end
   end
 end
