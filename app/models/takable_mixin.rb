@@ -1,6 +1,6 @@
 module TakableMixin
   def taken_by_user
-    self.find(self.taken_by)
+    self.class.find(self.taken_by)
   end
 
   def taken?

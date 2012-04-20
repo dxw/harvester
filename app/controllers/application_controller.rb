@@ -32,34 +32,32 @@ class ApplicationController < ActionController::Base
         next_resource!
       end
 
-      if @resource.nil?
-        if @@resource_name == :group #TODO: modify once group is within department
-          redirect_to send("#{@@resource_name}s_path")
-        else
-          redirect_to send("department_#{@@resource_name}s_path")
-        end
-        return
-      else
-        if @@resource_name == :group #TODO: modify once group is within department
-          redirect_to send("edit_#{@@resource_name}_path", @resource.id)
-        else
-          redirect_to send("edit_department_#{@@resource_name}_path", @resource.id)
-        end
-        return
-      end
+      redirect
     end
 
     def get_next
       next_resource!
 
+      redirect
+    end
+
+    def redirect
+      @department = Department.find(params[:department_id])
+
       if @resource.nil?
-        redirect_to send("#{@@resource_name}s_path")
+        if @@resource_name == :group #TODO: modify once group is within department
+          redirect_to send("#{@@resource_name}s_path")
+        else
+          redirect_to send("department_#{@@resource_name}s_path", @department.id)
+        end
+        return
       else
         if @@resource_name == :group #TODO: modify once group is within department
           redirect_to send("edit_#{@@resource_name}_path", @resource.id)
         else
-          redirect_to send("edit_department_#{@@resource_name}_path", @resource.id)
+          redirect_to send("edit_department_#{@@resource_name}_path", @department.id, @resource.id)
         end
+        return
       end
     end
 

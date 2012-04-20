@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   #TODO: DRY this
 
   def groups
-    departments.map{|d| d.groups }.flatten
+    departments.map{|d| d.groups }.flatten.sort.uniq
   end
 
   def next_group
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   ##
 
   def needs
-    departments.map{|d| d.groups.map {|g| g.pages.map {|p| p.needs } } }.flatten
+    departments.map{|d| d.groups.map {|g| g.pages.map {|p| p.needs } } }.flatten.sort.uniq
   end
 
   def next_need
