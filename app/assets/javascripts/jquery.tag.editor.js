@@ -121,8 +121,10 @@ Joost Elfering
                         return;
 
                     item.css('backgroundColor', '#f00')
-                    item.animate({opacity: '0'}, 500, function() { item.remove(); })
-                    parse();
+                    item.animate({opacity: '0'}, 500, function() {
+                        item.remove();
+                        parse();
+                    })
                 });
 
                 listBase.append(item);
