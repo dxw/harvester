@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     @@resource_name = name
     @@resource_class = name.to_s.classify.constantize
 
+    before_filter do
+      @department = Department.find(params[:department_id])
+    end
+
     def update
       @resource = @@resource_class.find(params[:id])
 
@@ -42,23 +46,12 @@ class ApplicationController < ActionController::Base
     end
 
     def redirect
-      @department = Department.find(params[:department_id])
-
       if @resource.nil?
-        if @@resource_name == :group #TODO: modify once group is within department
-          redirect_to send("#{@@resource_name}s_path")
-        else
-          redirect_to send("department_#{@@resource_name}s_path", @department.id)
-        end
-        return
+        redirect_to send("department_#{@@resource_name}s_path", @department.id)
       else
-        if @@resource_name == :group #TODO: modify once group is within department
-          redirect_to send("edit_#{@@resource_name}_path", @resource.id)
-        else
-          redirect_to send("edit_department_#{@@resource_name}_path", @department.id, @resource.id)
-        end
-        return
+        redirect_to send("edit_department_#{@@resource_name}_path", @department.id, @resource.id)
       end
+      return
     end
 
     def next_resource!

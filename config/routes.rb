@@ -1,12 +1,13 @@
 HarvesterNg::Application.routes.draw do
-  resources :groups, only: [:edit, :update, :index] do
-    post :get_next, on: :collection
-    get :autocomplete_audience_name, on: :collection
-    get :autocomplete_need_name, on: :collection
-  end
-
   resources :departments, only: [] do
+    resources :groups, only: [:edit, :update, :index] do
+      post :get_next, on: :collection
+      get :autocomplete_audience_name, on: :collection
+      get :autocomplete_need_name, on: :collection
+    end
+
     resources :needs, only: [:edit, :update, :index] do
+      post :get_next, on: :collection
       get :autocomplete_audience_name, on: :collection
       get :autocomplete_need_name, on: :collection
       get :autocomplete_new_page_uri, on: :collection
@@ -19,7 +20,8 @@ HarvesterNg::Application.routes.draw do
 
   devise_for :users
 
-  match '/' => redirect('/groups')
+  #TODO: this will not always work
+  match '/' => redirect('/departments/1/groups')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
