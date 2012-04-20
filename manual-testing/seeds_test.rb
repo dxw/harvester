@@ -10,6 +10,14 @@ dishes = ['chowder', 'soup', 'roasties', 'cassarole', 'mash']
 northern_places = ['South Dakota', 'South Africa', 'South Sudan', 'South Korea', 'South Carolina']
 southern_places = ['North Dakota', 'North Korea', 'North Carolina']
 
+northern_places.each do |r|
+  Need.create!(name: r)
+end
+
+southern_places.each do |r|
+  Audience.create!(name: r)
+end
+
 
 20.times do
   group = Group.create!(name: "#{vegetables.sample} and #{vegetables.sample} #{dishes.sample}")
@@ -18,10 +26,10 @@ southern_places = ['North Dakota', 'North Korea', 'North Carolina']
     name = Faker::Lorem.sentence
     page = group.pages.create!(name: name, uri: "http://example.com/#{name.gsub(/\s+/, '/').downcase}")
     3.times do
-      page.needs.create!(name: northern_places.sample)
+      page.needs << Need.find_by_name(northern_places.sample)
     end
     3.times do
-      page.audiences.create!(name: southern_places.sample)
+      page.audiences << Audience.find_by_name(southern_places.sample)
     end
   end
 
