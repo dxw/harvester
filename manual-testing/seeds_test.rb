@@ -33,7 +33,7 @@ end
 department = Department.create!(name: 'Ministry of Juice')
 
 department.users << User.create!(email: 'kool-aid@dxw.com', password: 'foobar')
-
+department.users << User.find_by_email('harry@dxw.com')
 
 vegetables = ['bak-choi', 'lotus root', 'butternut squash']
 dishes = ['curry', 'creme brule']
