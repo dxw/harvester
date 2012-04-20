@@ -17,6 +17,8 @@ class Page < ActiveRecord::Base
   def set_tags(taxonomy, values)
     cls, mtd, create = taxonomies[taxonomy]
 
+    values = values.uniq
+
     self.send(mtd).clear
     values.each do |a|
       unless b = cls.find_by_name(a)
