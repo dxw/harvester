@@ -11,24 +11,39 @@
         %table.table.table-striped.table-condensed
           %thead
             %tr
-              %th
-              - taxonomies_a.each do |a|
-                %th
-                  = render partial: 'taxonomy_head', locals: {tax: a}
+              %th Original URL
+              %th Propositions
+              %th Needs
+              %th Audiences
             %tr
               %th
-              - taxonomies_a.each do |a|
+              - taxonomies_a.each do |tax|
+                - tag = taxonomy_tag(tax)
                 %th
-                  = render partial: 'taxonomy_meta', locals: {tax: a}
+                  - case tag[:type]
+                  - when :checkboxes
+                    %table.attributes.meta
+                      %tr
+                        - tag[:cls].all.each do |a|
+                          %td{:class => a.name}
+                            %input{type: 'checkbox', data: {name: "#{tax}::#{a.name}"}, disabled: !@group.taken_by?(current_user)}
 
           %tbody
             - @group.pages.each do |page|
               %tr
                 %td
                   %a{href: page.uri, target: 'content'}= page.name
-                - taxonomies_a.each do |a|
+                - taxonomies_a.each do |tax|
+                  - tag = taxonomy_tag(tax)
                   %td
-                    = render partial: 'taxonomy_tag', locals: {tax: a, page: page}
+                    - case tag[:type]
+                    - when :checkboxes
+                      %table.attributes.body
+                        %tr
+                          - tag[:cls].all.each do |a|
+                            %td{:class => a.name}= check_box_tag('pages[%s][%s][%s]' % [page.id, tax, a.name], '1', page.has_tag?(tax, a.name), {data: {name: "#{tax}::#{a.name}"}, disabled: !@group.taken_by?(current_user)})
+                    - when :text
+                      = autocomplete_field_tag('pages[%s][%s]' % [page.id, tax], page.tags(tax).join(', '), send("autocomplete_#{tax.to_s[0..-2]}_name_groups_path"), {disabled: !@group.taken_by?(current_user), class: 'editable_list', data: {delimiter: ', '}})
 
 .row-fluid
   %iframe.span12{name: :content, id: :content}
