@@ -34,4 +34,8 @@ class NeedsController < ApplicationController
       redirect_to department_needs_path
     end
   end
+
+  def index
+    @needs = current_user.groups.map{|g|g.pages.map{|p|p.needs}}.flatten.sort.uniq
+  end
 end

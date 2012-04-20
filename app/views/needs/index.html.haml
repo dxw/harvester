@@ -1,0 +1,9 @@
+.row-fluid
+  %h2 Needs
+
+  = form_tag({action: :get_next}, method: :post) do
+    =submit_tag('Get a need', class: 'btn')
+
+  %ul
+    - @needs.each do |need|
+      %li=link_to(need.name, edit_department_need_path(need))
