@@ -182,7 +182,7 @@ Joost Elfering
                             parse();
                             return false;
                         }
-                        return true;
+                        return false;
                         break;
                 }
             }
