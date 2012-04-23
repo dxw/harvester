@@ -16,3 +16,4 @@
 
 webrat.log
 config/initializers/secrets.rb
+coverage
