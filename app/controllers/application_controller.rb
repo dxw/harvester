@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
       if @resource.nil?
         redirect_to send("department_#{@@resource_name}s_path", @department.id)
       else
+        p send("edit_department_#{@@resource_name}_path", @department.id, @resource.id)
         redirect_to send("edit_department_#{@@resource_name}_path", @department.id, @resource.id)
       end
       return
