@@ -4,21 +4,31 @@ describe GroupsController do
   login_user
 
   before(:each) do
-    @groups = []
-    @groups << FactoryGirl.create(:group, name: 'Group1')
-    @groups << FactoryGirl.create(:group, name: 'Group2')
+    # @user1 = FactoryGirl.create(:user)
+    @department1 = FactoryGirl.create(:department)
+    @group1 = FactoryGirl.create(:group)
+    @department1.groups = [@group1]
+    @department1.users = [@user]
+    [1,2,3].each do |i|
+      pg = FactoryGirl.create(:page, group_id: @group1.id)
+      pg.needs << FactoryGirl.create(:need, name: "N#{i}")
+    end
+
+    @user2 = FactoryGirl.create(:user)
+    @department2 = FactoryGirl.create(:department)
+    @group2 = FactoryGirl.create(:group)
+    @department2.groups = [@group2]
+    @department2.users = [@user2]
   end
 
   describe "POST 'update'" do
     it "allows taking groups" do
-      pending
-      post 'update', {id: @groups.first.to_param, commit: 'Take'}
+      post 'update', {department_id: @department1.to_param, id: @group1.to_param, commit: 'Take'}
       response.should be_redirect
-      response.headers['Location'].should == "http://test.host/groups/#{@groups.first.id}/edit"
+      response.headers['Location'].should == "http://test.host/departments/1/groups/#{@group1.id}/edit"
 
-      @groups.first.taken?.should be_true
-      @groups.first.taken_by_user.should_not be_nil
-      response.should be_redirect
+      @group1.taken?.should be_true
+      @group1.taken_by_user.should == @user
     end
 
     it "allows untaking groups" do
