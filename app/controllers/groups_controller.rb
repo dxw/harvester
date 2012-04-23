@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
     unless current_user.can_edit_group? @group
-      redirect_to groups_path
+      redirect_to department_groups_path
     end
   end
 end

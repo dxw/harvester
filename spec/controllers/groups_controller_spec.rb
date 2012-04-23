@@ -24,40 +24,48 @@ describe GroupsController do
   describe "POST 'update'" do
     it "allows taking groups" do
       post 'update', {department_id: @department1.to_param, id: @group1.to_param, commit: 'Take'}
-      response.should be_redirect
-      response.headers['Location'].should == "http://test.host/departments/1/groups/#{@group1.id}/edit"
 
       @group1.taken?.should be_true
       @group1.taken_by_user.should == @user
+      response.should redirect_to(edit_department_group_path(department_id: @department1.to_param, id: @group1.to_param))
     end
 
     it "allows untaking groups" do
-      pending
-      @groups.first.taken_by = @users.first.id
+      @group1.taken_by = @user.id
 
-      post 'update', {id: @groups.first.id, commit: 'Save'}
+      post 'update', {department_id: @department1.to_param, id: @group1.to_param, commit: 'Save'}
 
-      @groups.first.taken?.should be_false
-      @groups.first.taken_by_user.should == @users.first.id
-      response.should be_redirect
+      @group1.taken?.should be_false
+      @group1.taken_by_user.should == @user.id
+      response.should redirect_to(edit_department_group_path(department_id: @department1.to_param, id: @group1.to_param))
     end
 
     it "allows updating values" do
       pending
-      post 'update', group: {id: @groups.first.id, commit: true}
+      post 'update', group: {department_id: @department1.to_param, id: @group1.to_param, commit: 'Save'}
 
-      @groups.first.taken?.should be_true
-      @groups.first.taken_by_user.should_not be_nil
-      response.should be_redirect
+      response.should redirect_to(edit_department_group_path(department_id: @department1.to_param, id: @group1.to_param))
+      @group1.taken?.should be_true
+      @group1.taken_by_user.should_not be_nil
     end
   end
 
   describe "GET 'edit'" do
     it "returns http success" do
-      pending
-      get 'edit'
+      get 'edit', {department_id: @department1.to_param, id: @group1.to_param}
       response.should be_success
-      pending
+    end
+
+    it "redirects non-users elsewhere" do
+      get 'edit', {department_id: @department2.to_param, id: @group2.to_param}
+      response.should redirect_to(department_groups_path)
+    end
+  end
+
+  describe "GET 'index'" do
+    it "returns http success" do
+      get 'index', {department_id: @department1.to_param}
+      response.should be_success
     end
   end
 
