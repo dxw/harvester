@@ -3,6 +3,9 @@ class GroupsController < ApplicationController
   autocomplete :need, :name, full: true
 
   takable_resource :group
+  def resource_name
+    :group
+  end
 
   ###
 

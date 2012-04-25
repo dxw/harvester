@@ -4,6 +4,9 @@ class NeedsController < ApplicationController
   autocomplete :new_page, :uri, full: true
 
   takable_resource :need
+  def resource_name
+    :group
+  end
 
   def update_page page, formdata
     page.needs << @resource
