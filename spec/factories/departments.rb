@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :department do
-    trait :name
+    sequence(:name) {|n| "Department #{n}"}
   end
 end

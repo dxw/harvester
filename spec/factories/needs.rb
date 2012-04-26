@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :need do
-    trait :name
+    sequence(:name) {|n| "Need #{n}"}
   end
 end

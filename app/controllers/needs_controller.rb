@@ -5,7 +5,7 @@ class NeedsController < ApplicationController
 
   takable_resource :need
   def resource_name
-    :group
+    :need
   end
 
   def update_page page, formdata

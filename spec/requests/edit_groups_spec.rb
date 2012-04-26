@@ -1,62 +1,48 @@
 require 'spec_helper'
 
 describe "EditGroups" do
+  login_user
+
   before(:each) do
-    user = FactoryGirl.create(:user)
-    department = FactoryGirl.create(:department, name: 'Department 1')
-    group = FactoryGirl.create(:group, name: 'Group 1')
-
-    user.departments = [department]
-    department.groups = [group]
-
-    get new_user_session_path
-    fill_in 'user_email', with: 'person1@dxw.com'
-    fill_in 'user_password', with: 'password1'
-    pending
-    click_button 'Sign in'
+    group = FactoryGirl.create(:group)
+    Department.first.groups = [group]
   end
 
-  describe "GET /groups/1/edit" do
+  describe "GET /departments/1/groups/1/edit" do
     it "allows taking a group" do
-      pending
-      get edit_group_path(Group.first.id)
-      response.status.should be(200)
+      get edit_department_group_path(Department.first.id, Group.first.id)
+      response.should be_success
 
       Group.first.taken?.should == false
-      response.body.should include 'Take'
+      response.body.should include 'Edit'
       response.body.should_not include 'Save'
 
-      click_button 'Take'
+      click_button 'Edit'
 
       Group.first.taken?.should == true
       Group.first.taken_by_user.should == User.first
-      response.body.should_not include 'Take'
+      response.body.should_not include 'Edit'
       response.body.should include 'Save'
     end
 
     it "allows saving a group - untaking" do
+      Group.first.take! User.first
+      get edit_department_group_path(Department.first.id, Group.first.id)
       pending
-      get edit_group_path(Group.first.id)
       response.status.should be(200)
-      click_button 'Take'
-
-      Group.first.taken?.should == true
-      Group.first.taken_by_user.should == User.first
-      response.body.should_not include 'Take'
-      response.body.should include 'Save'
 
       click_button 'Save'
 
       Group.first.taken?.should == false
-      response.body.should include 'Take'
+      response.body.should include 'Edit'
       response.body.should_not include 'Save'
     end
 
     it "allows saving a group - updating values" do
+      get edit_department_group_path(Department.first.id, Group.first.id)
       pending
-      get edit_group_path(Group.first.id)
       response.status.should be(200)
-      click_button 'Take'
+      click_button 'Edit'
 
       pending
       click_button 'Save'

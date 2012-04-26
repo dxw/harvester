@@ -1,6 +1,5 @@
 module TakableResource
   def update
-    p resource_name
     @resource = resource_class.find(params[:id])
 
     unless current_user.send("can_edit_#{resource_name}?", @resource)
@@ -9,10 +8,8 @@ module TakableResource
     end
 
     if params[:commit] == 'Edit'
-      p 'Edit'
       @resource.take! current_user
     elsif ((params[:commit] == 'Save') || (params[:commit].start_with?('Next'))) && @resource.taken_by?(current_user)
-      p 'Save'
       @resource.taken_by = nil
 
       update_taxonomies
