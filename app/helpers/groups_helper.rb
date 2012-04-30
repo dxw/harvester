@@ -8,6 +8,7 @@ module GroupsHelper
   end
 
   def taxonomies_a
+    p 'x'
     taxonomies.keys
   end
 end

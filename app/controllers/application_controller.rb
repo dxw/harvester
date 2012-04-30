@@ -56,6 +56,7 @@ module TakableResource
           if page[tax].is_a? String
             tags = page[tax].split(',').map{|s|s.strip}.select{|s|s.length > 0}
           elsif page[tax].is_a? Hash
+            p 'y'
             tags = page[tax].keys
           else
             raise NotImplementedError
