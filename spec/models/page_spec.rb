@@ -4,8 +4,8 @@ describe Page do
 
   before(:each) do
     @page = FactoryGirl.create(:page)
-    FactoryGirl.create(:attribute, name: :a)
-    FactoryGirl.create(:attribute, name: :b)
+    FactoryGirl.create(:attr, name: :a)
+    FactoryGirl.create(:attr, name: :b)
     FactoryGirl.create(:audience, name: :a)
     FactoryGirl.create(:audience, name: :b)
     FactoryGirl.create(:need, name: :a)

@@ -1,6 +1,6 @@
 HarvesterNg::Application.config.taxonomies = {
   attrs: {
-    cls: ::Attribute,
+    cls: ::Attr,
     type: :checkboxes
   },
   needs: {

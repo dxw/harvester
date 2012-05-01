@@ -4,7 +4,7 @@ FactoryGirl.define do
     uri 'http://dxw.com/'
 
     factory :page_with_attributes do
-      attrs [FactoryGirl.create(:attribute)]
+      attrs [FactoryGirl.create(:attr)]
     end
   end
 end

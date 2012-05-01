@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417184239) do
+ActiveRecord::Schema.define(:version => 20120501144850) do
 
-  create_table "attributes", :force => true do |t|
+  create_table "attrs", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20120417184239) do
 
   create_table "pages_attributes", :id => false, :force => true do |t|
     t.integer "page_id"
-    t.integer "attribute_id"
+    t.integer "attr_id"
   end
 
   create_table "pages_audiences", :id => false, :force => true do |t|
