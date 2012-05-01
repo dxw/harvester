@@ -51,7 +51,7 @@ module TakableResource
   def update_taxonomies
     params[:pages].each do |id,page|
       pp = Page.find(id)
-      [:attributes, :audiences, :needs].each do |tax|
+      [:attrs, :audiences, :needs].each do |tax|
         if page[tax]
           if page[tax].is_a? String
             tags = page[tax].split(',').map{|s|s.strip}.select{|s|s.length > 0}

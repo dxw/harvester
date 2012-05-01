@@ -13,9 +13,9 @@ describe Page do
   end
 
   it "set existing attributes, but not create new ones" do
-    @page.tags(:attributes).should == []
-    @page.set_tags(:attributes, ['a', 'b', 'x', 'y'])
-    @page.tags(:attributes).should == ['a', 'b']
+    @page.tags(:attrs).should == []
+    @page.set_tags(:attrs, ['a', 'b', 'x', 'y'])
+    @page.tags(:attrs).should == ['a', 'b']
   end
 
   it "set existing and new audiences and needs" do

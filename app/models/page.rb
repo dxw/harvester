@@ -2,15 +2,15 @@ class Page < ActiveRecord::Base
   attr_accessible :name, :uri
   belongs_to :group
   has_many :new_pages
-  has_and_belongs_to_many :attributes, join_table: :pages_attributes
+  has_and_belongs_to_many :attrs, class_name: :attributes, join_table: :pages_attributes
   has_and_belongs_to_many :audiences, join_table: :pages_audiences
   has_and_belongs_to_many :needs, join_table: :pages_needs
 
   def taxonomies
     {
-      attributes: [::Attribute, :attributes, false],
-      audiences:  [::Audience, :audiences, true],
-      needs:      [::Need, :needs, true],
+      attrs:     [::Attribute, :attrs, false],
+      audiences: [::Audience, :audiences, true],
+      needs:     [::Need, :needs, true],
     }
   end
 
@@ -39,6 +39,8 @@ class Page < ActiveRecord::Base
 
   def tags(taxonomy)
     cls, mtd, create = taxonomies[taxonomy]
+    p self
+    p self.attrs
 
     self.send(mtd).map do |t|
       t.name

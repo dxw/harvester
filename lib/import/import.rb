@@ -31,12 +31,8 @@ class Import
 
         group = Group.find_or_create_by_name!(group_name)
         page = Page.create!(uri: uri, name: name)
-        # group.pages << page
-        # group.save!
-        # page.group_id = group.id
-        # page.save!
-        # page.group = group
-        # page.save!
+        page.group = group
+        page.save!
       end
     end
   end
