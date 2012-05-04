@@ -19,13 +19,15 @@ class Page < ActiveRecord::Base
 
     values = values.uniq
 
-    self.send(mtd).clear
+    new_values = []
     values.each do |a|
       unless b = cls.find_by_name(a)
         b = cls.create!(name: a) if create
       end
-      self.send(mtd) << b unless b.nil?
+      new_values << b unless b.nil?
     end
+
+    self.send("#{mtd.to_s}=".to_sym, new_values)
 
   end
 
