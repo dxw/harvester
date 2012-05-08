@@ -2,7 +2,7 @@ class Group < ActiveRecord::Base
   include TakableMixin
 
   attr_accessible :name
-  has_and_belongs_to_many :departments, join_table: :departments_groups
+  belongs_to :department
   has_many :pages
 
   # Override TakableMixin
