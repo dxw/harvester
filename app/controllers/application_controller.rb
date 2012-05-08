@@ -79,14 +79,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate_user!
 
+
+  around_filter :profile if Rails.env == 'development'
+
+  def profile
+    if params[:profile] && result = RubyProf.profile { yield }
+      out = StringIO.new
+      RubyProf::GraphHtmlPrinter.new(result).print out, :min_percent => 0
+      self.response_body = out.string
+    else
+      yield
+    end
+  end
+
   def self.takable_resource name
     # @@resource_name = name
     # @@resource_class = name.to_s.classify.constantize
 
     before_filter do
-      @department = Department.find(params[:department_id])
-    end
+    @department = Department.find(params[:department_id])
+  end
 
-    include TakableResource
+  include TakableResource
   end
 end
