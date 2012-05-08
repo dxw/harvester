@@ -56,6 +56,6 @@ class Page < ActiveRecord::Base
   # Public: Returns true if this page is done. A page is done when it has at 
   # least one proposition.
   def done?
-    Page.attrs.empty?
+    attrs.empty?
   end
 end
