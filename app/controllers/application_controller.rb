@@ -45,8 +45,9 @@ module TakableResource
   end
 
   def update_taxonomies
-    params[:pages].each do |id,page|
-      pp = Page.find(id)
+    Page.where('id in (?)', params[:pages].keys).find_each do |pp|
+      page = params[:pages][pp.to_param]
+
       [:attrs, :audiences, :needs].each do |tax|
         if page[tax]
           if page[tax].is_a? String
