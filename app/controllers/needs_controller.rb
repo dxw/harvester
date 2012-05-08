@@ -22,7 +22,7 @@ class NeedsController < ApplicationController
   end
 
   def department_and_need_match
-    unless @need.pages.map{|p|p.group}.any? { |g| g.department.id = params[:department_id].to_i}
+    unless @department.needs.include? @need
       redirect_to department_needs_path
     end
   end
@@ -39,6 +39,6 @@ class NeedsController < ApplicationController
   end
 
   def index
-    @needs = @department.groups.map{|g|g.pages.map{|p|p.needs}}.flatten.sort.uniq
+    @needs = @department.needs
   end
 end
