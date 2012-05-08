@@ -84,6 +84,7 @@ GEM
     multi_json (1.2.0)
     multipart-post (1.1.5)
     mysql2 (0.3.11)
+    newrelic_rpm (3.3.4.1)
     nokogiri (1.5.0)
     oauth (0.4.5)
     oauth2 (0.5.2)
@@ -183,6 +184,7 @@ DEPENDENCIES
   haml
   jquery-rails
   mysql2
+  newrelic_rpm
   nokogiri (< 1.5.1)
   rails (= 3.2.3)
   rails3-jquery-autocomplete
