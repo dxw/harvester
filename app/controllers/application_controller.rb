@@ -2,7 +2,7 @@ module TakableResource
   def update
     @resource = resource_class.find(params[:id])
 
-    unless current_user.send("can_edit_#{resource_name}?", @resource)
+    unless current_user.send("can_edit_department?", @department)
       redirect_to send("department_#{resource_name}s_path")
       return
     end
@@ -40,12 +40,8 @@ module TakableResource
   end
 
   def next_resource!
-    @resource = current_user.send("next_#{resource_name}")
+    @resource = @department.send("next_#{resource_name}")
     @resource.take! current_user if @resource
-  end
-
-  def next_resource
-    raise NotImplementedError
   end
 
   def update_taxonomies

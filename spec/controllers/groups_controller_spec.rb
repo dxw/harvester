@@ -71,4 +71,11 @@ describe GroupsController do
     end
   end
 
+  describe "POST 'get_next'" do
+    it "returns http success" do
+      post 'get_next', {department_id: @department1.to_param}
+      response.should be_redirect
+    end
+  end
+
 end

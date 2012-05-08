@@ -10,13 +10,13 @@ class GroupsController < ApplicationController
   ###
 
   def index
-    @groups = current_user.groups
+    @groups = @department.groups
   end
 
   def edit
     @group = Group.find(params[:id])
 
-    unless current_user.can_edit_group? @group
+    unless current_user.can_edit_department? @department
       redirect_to department_groups_path
     end
   end

@@ -33,12 +33,12 @@ class NeedsController < ApplicationController
     @need = Need.find(params[:id])
     department_and_need_match
 
-    unless current_user.can_edit_need? @need
+    unless current_user.can_edit_department? @department
       redirect_to department_needs_path
     end
   end
 
   def index
-    @needs = current_user.groups.map{|g|g.pages.map{|p|p.needs}}.flatten.sort.uniq
+    @needs = @department.groups.map{|g|g.pages.map{|p|p.needs}}.flatten.sort.uniq
   end
 end

@@ -10,7 +10,7 @@ class Need < ActiveRecord::Base
   # Override TakableMixin
 
   def users_who_can_take_me
-    pages.map {|p| p.group.department.users }.flatten
+    User.find_by_sql(['select distinct users.* from users, users_departments, groups, pages, pages_needs where users.id = users_departments.user_id and groups.department_id = users_departments.department_id and groups.id = pages.group_id and pages.id = pages_needs.page_id and pages_needs.need_id = ?', self.id])
   end
 
   def done?
