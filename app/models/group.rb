@@ -8,7 +8,7 @@ class Group < ActiveRecord::Base
   # Override TakableMixin
 
   def users_who_can_take_me
-    departments.map {|d| d.users }.flatten
+    department.users
   end
 
   def done?
