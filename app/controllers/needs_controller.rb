@@ -22,7 +22,7 @@ class NeedsController < ApplicationController
   end
 
   def department_and_need_match
-    unless @need.pages.map{|p|p.group}.map{|g|g.departments.map{|d|d.id}}.flatten.include? params[:department_id].to_i
+    unless @need.pages.map{|p|p.group}.any? { |g| g.department.id = params[:department_id].to_i}
       redirect_to department_needs_path
     end
   end
