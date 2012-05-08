@@ -39,6 +39,11 @@ class Page < ActiveRecord::Base
     end
   end
 
+  # Public: Fetch the terms which are set on this page in the given taxonomy
+  #
+  # taxonomy - One of :attrs (propositions), :audiences, or :needs
+  #
+  # Returns an array of the terms
   def tags(taxonomy)
     cls, mtd, create = taxonomies[taxonomy]
 
@@ -47,9 +52,10 @@ class Page < ActiveRecord::Base
     end
   end
 
+
+  # Public: Returns true if this page is done. A page is done when it has at 
+  # least one proposition.
   def done?
-    taxonomies.values.map{|t|t[1]}.any? do |t|
-      tags(t).length > 0
-    end
+    Page.attrs.empty?
   end
 end
