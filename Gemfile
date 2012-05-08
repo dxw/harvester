@@ -47,4 +47,5 @@ end
 group :development do
   gem 'rspec-rails'
   gem 'webrat'
+  gem 'ruby-prof'
 end

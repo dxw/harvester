@@ -133,6 +133,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.9.0)
+    ruby-prof (0.11.2)
     sass (3.1.15)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -186,6 +187,7 @@ DEPENDENCIES
   rails (= 3.2.3)
   rails3-jquery-autocomplete
   rspec-rails
+  ruby-prof
   sass-rails (~> 3.2.3)
   simplecov
   sqlite3
