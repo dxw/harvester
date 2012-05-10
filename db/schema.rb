@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508104739) do
+ActiveRecord::Schema.define(:version => 20120510205240) do
 
   create_table "attrs", :force => true do |t|
     t.string   "name"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20120508104739) do
 
   create_table "audiences", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "done",       :default => false
   end
 
   add_index "audiences", ["id"], :name => "index_audiences_on_id"
@@ -39,19 +40,21 @@ ActiveRecord::Schema.define(:version => 20120508104739) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "taken_by"
     t.integer  "department_id"
+    t.boolean  "done",          :default => false
   end
 
   add_index "groups", ["id"], :name => "index_groups_on_id"
 
   create_table "needs", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "taken_by"
+    t.boolean  "done",       :default => false
   end
 
   add_index "needs", ["id"], :name => "index_needs_on_id"
