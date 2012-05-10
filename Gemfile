@@ -32,6 +32,7 @@ gem 'couchrest'
 # gem 'google-spreadsheet-ruby', require: 'google_spreadsheet'
 gem 'google-spreadsheet-ruby'
 gem 'nokogiri', '< 1.5.1' # For google-spreadsheet-ruby
+gem 'progressbar', require: false
 
 gem 'faker'
 

@@ -1,4 +1,4 @@
-class Import
+class ImportCouch
   def self.go uri
     i = self.new uri
     i.import
