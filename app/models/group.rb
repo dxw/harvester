@@ -5,13 +5,18 @@ class Group < ActiveRecord::Base
   belongs_to :department
   has_many :pages
 
+  before_save do
+    self.done = _done?
+    true
+  end
+
   # Override TakableMixin
 
   def users_who_can_take_me
     department.users
   end
 
-  def done?
+  def _done?
     pages.all? do |page|
       page.done?
     end

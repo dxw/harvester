@@ -29,6 +29,10 @@ module TakableMixin
   end
 
   def done?
+    self.done
+  end
+
+  def _done?
     raise NotImplementedError
   end
 
