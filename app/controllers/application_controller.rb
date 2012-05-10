@@ -66,6 +66,8 @@ module TakableResource
 
       update_page pp, page
     end
+
+    @resource.save!
   end
 
   def update_page page, formdata
