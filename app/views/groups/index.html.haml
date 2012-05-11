@@ -4,6 +4,10 @@
   = form_tag({action: :get_next}, method: :post) do
     =submit_tag('Get a group', class: 'btn')
 
-  %ul
+  %table.table.table-striped.table-condensed.table-bordered
     - @groups.each do |group|
-      %li=link_to(group.name, edit_department_group_path(@department.id, group))
+      %tr
+        %td.number.small
+          = group.pages.length
+          %span{class: group.done? ? 'icon-ok' : 'icon-remove'}
+        %td= link_to(group.name, edit_department_group_path(@department.id, group))
