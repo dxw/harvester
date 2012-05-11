@@ -48,7 +48,7 @@
     $(function () {
         // Resize
         $(window).resize(function () {
-            $('iframe#content').height($(window).height() - 250)
+            $('iframe#content').height($(window).height() - 300)
         })
         $(window).trigger('resize')
 
