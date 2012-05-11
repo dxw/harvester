@@ -14,6 +14,7 @@
 /log/*.log
 /tmp
 
-webrat.log
-config/initializers/secrets.rb
-coverage
+/webrat.log
+/config/initializers/secrets.rb
+/coverage
+/public/assets
