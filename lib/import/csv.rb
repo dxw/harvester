@@ -2,13 +2,14 @@ require 'csv'
 require 'progressbar'
 
 class ImportCSV
-  def self.go file
-    i = self.new file
+  def self.go file, department
+    i = self.new file, department
     i.import
   end
 
-  def initialize file
+  def initialize file, department
     @file = file
+    @department = Department.find(department)
     @size = File.read(@file).split("\n").length
   end
 
@@ -34,11 +35,12 @@ class ImportCSV
       # Adding pages
       unless row[1].nil?
         group = Group.find_or_create_by_name!(group_name)
+        group.department = @department
         if group.name.nil?
           group.name = "Group #{group.id}"
           group_name = group.name
-          group.save!
         end
+        group.save!
 
         page = Page.create!(uri: row[1], name: row[2])
         page.name = "Page #{page.id}" if page.name.nil?

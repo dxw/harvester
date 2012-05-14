@@ -1,27 +1,30 @@
-desc "Import from couch"
-task :import_couch => :environment do
+namespace :import do
+  desc "Import from couch"
+  task :couch => :environment do
 
-  require Rails.root.join('lib','import','couch')
+    require Rails.root.join('lib','import','couch')
 
-  uri = ENV['IMPORT_URI']
-  if uri.nil?
-    puts 'Usage: IMPORT_URI=... rake import_couch'
-    exit 1
+    uri = ENV['IMPORT_URI']
+    if uri.nil?
+      puts 'Usage: IMPORT_URI=... rake import_couch'
+      exit 1
+    end
+    ImportCouch.go uri
+
   end
-  ImportCouch.go uri
 
-end
+  desc "Import from CSV"
+  task :csv => :environment do
 
-desc "Import from CSV"
-task :import_csv => :environment do
+    require Rails.root.join('lib','import','csv')
 
-  require Rails.root.join('lib','import','csv')
+    file = ENV['CSV']
+    department = ENV['DEPARTMENT'].to_i
+    if file.nil? or department.nil?
+      puts 'Usage: rake import_csv CSV=file.csv DEPARTMENT=id'
+      exit 1
+    end
+    ImportCSV.go file, department
 
-  file = ENV['CSV']
-  if file.nil?
-    puts 'Usage: CSV=... rake import_csv'
-    exit 1
   end
-  ImportCSV.go file
-
 end
