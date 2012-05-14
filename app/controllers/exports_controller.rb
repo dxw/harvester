@@ -3,30 +3,30 @@ class ExportsController < ApplicationController
   end
 
   def to_gdocs
-    session = GoogleSpreadsheet.login(HarvesterNg::Application::config.google_docs[:username], HarvesterNg::Application::config.google_docs[:password])
+    session = GoogleDrive.login(HarvesterNg::Application::config.google_docs[:username], HarvesterNg::Application::config.google_docs[:password])
     datetime = Time.zone.now.strftime('%Y-%m-%d %H:%M %Z')
 
-    spreadsheet = session.create_spreadsheet("Harvester #{datetime}")
+
+    file = session.upload_from_string(get_csv, "Harvester #{datetime}", content_type: 'text/csv')
 
     if HarvesterNg::Application::config.google_docs[:collection]
       collection = session.collection_by_url(HarvesterNg::Application::config.google_docs[:collection])
-      collection.add(spreadsheet)
+      collection.add(file)
     end
 
-    ws = spreadsheet.worksheets.first
-
-    get_table.each_with_index do |row,y|
-      row.each_with_index do |cell,x|
-        ws[y+1,x+1] = cell
-      end
-    end
-
-    ws.save
-
-    redirect_to spreadsheet.human_url
+    redirect_to file.human_url
   end
 
   private
+
+  def get_csv
+    require 'csv'
+    CSV.generate do |csv|
+      get_table.each do |row|
+        csv << row
+      end
+    end
+  end
 
   def get_table
     table = []

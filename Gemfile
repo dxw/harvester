@@ -28,9 +28,7 @@ gem 'devise'
 gem 'haml'
 gem 'rails3-jquery-autocomplete'
 gem 'couchrest'
-# Add the gem so we have the dependencies, but don't load it
-gem 'google-spreadsheet-ruby', require: 'google_spreadsheet'
-gem 'nokogiri', '< 1.5.1' # For google-spreadsheet-ruby
+gem 'google_drive'
 gem 'progressbar', require: false
 
 gem 'faker'
