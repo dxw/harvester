@@ -41,6 +41,7 @@ class ImportCSV
         end
 
         page = Page.create!(uri: row[1], name: row[2])
+        page.name = "Page #{page.id}" if page.name.nil?
         page.group = group
         page.save!
       end
