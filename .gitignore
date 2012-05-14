@@ -18,3 +18,4 @@
 /config/initializers/secrets.rb
 /coverage
 /public/assets
+/config/database.yml
