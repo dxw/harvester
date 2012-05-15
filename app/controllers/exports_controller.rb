@@ -19,17 +19,14 @@ class ExportsController < ApplicationController
   private
 
   def get_csv
-    require 'csv'
     CSV.generate do |csv|
-      get_table.each do |row|
+      get_rows do |row|
         csv << row
       end
     end
   end
 
-  def get_table
-    table = []
-
+  def get_rows
     # Header
 
     header = []
@@ -47,7 +44,7 @@ class ExportsController < ApplicationController
         header << tag[:cls].name
       end
     end
-    table << header
+    yield header
 
     # Body
 
@@ -70,10 +67,10 @@ class ExportsController < ApplicationController
         end
       end
 
-      table << line
+      yield line
     end
 
-    table
+    nil
   end
 
   def each_tax

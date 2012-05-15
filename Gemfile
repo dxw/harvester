@@ -48,3 +48,5 @@ group :development do
   gem 'webrat'
   gem 'ruby-prof'
 end
+
+require 'csv'
