@@ -6,7 +6,6 @@ class ExportsController < ApplicationController
     session = GoogleDrive.login(HarvesterNg::Application::config.google_docs[:username], HarvesterNg::Application::config.google_docs[:password])
     datetime = Time.zone.now.strftime('%Y-%m-%d %H:%M %Z')
 
-
     file = session.upload_from_string(get_csv, "Harvester #{datetime}", content_type: 'text/csv')
 
     if HarvesterNg::Application::config.google_docs[:collection]
