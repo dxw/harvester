@@ -1,3 +1,10 @@
 .row-fluid
   %h2 Export
-  %a{href: to_gdocs_export_path, class: 'btn'} Export to Google Docs
+  %button#export_to_gdocs.btn{data: {uri: to_gdocs_export_path}} Export to Google Docs
+
+.dialogs
+  #export_to_gdocs_dialog.modal
+    .modal-header
+      %h3 Hello
+    .modal-body
+      %p Hi

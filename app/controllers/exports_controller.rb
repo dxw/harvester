@@ -18,15 +18,7 @@ class ExportsController < ApplicationController
   end
 
   def to_gdocs
-    if params[:exported_data_id].nil?
-      redirect_to to_gdocs_export_path(ExportedData.export(:to_gdocs))
-    else
-      exported_data = ExportedData.find(params[:exported_data_id])
-      if exported_data.waiting?
-        # Just render the view
-      else
-        redirect_to exported_data.uri
-      end
-    end
+    exported_data = ExportedData.export(:to_gdocs)
+    render json: {ping: ping_export_path(exported_data.id)}
   end
 end
