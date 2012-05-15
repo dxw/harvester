@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510205240) do
+ActiveRecord::Schema.define(:version => 20120515153511) do
 
   create_table "attrs", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(:version => 20120510205240) do
   end
 
   add_index "departments", ["id"], :name => "index_departments_on_id"
+
+  create_table "exported_data", :force => true do |t|
+    t.integer  "department_id"
+    t.string   "uri"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "groups", :force => true do |t|
     t.string   "name"

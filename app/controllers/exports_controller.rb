@@ -1,81 +1,19 @@
+require 'jobs/export'
+
 class ExportsController < ApplicationController
   def show
   end
 
   def to_gdocs
-    session = GoogleDrive.login(HarvesterNg::Application::config.google_docs[:username], HarvesterNg::Application::config.google_docs[:password])
-    datetime = Time.zone.now.strftime('%Y-%m-%d %H:%M %Z')
-
-    file = session.upload_from_string(get_csv, "Harvester #{datetime}", content_type: 'text/csv')
-
-    if HarvesterNg::Application::config.google_docs[:collection]
-      collection = session.collection_by_url(HarvesterNg::Application::config.google_docs[:collection])
-      collection.add(file)
-    end
-
-    redirect_to file.human_url
-  end
-
-  private
-
-  def get_csv
-    CSV.generate do |csv|
-      get_rows do |row|
-        csv << row
+    if params[:exported_data_id].nil?
+      redirect_to to_gdocs_export_path(ExportedData.export(:to_gdocs))
+    else
+      exported_data = ExportedData.find(params[:exported_data_id])
+      if exported_data.waiting?
+        # Just render the view
+      else
+        redirect_to exported_data.uri
       end
-    end
-  end
-
-  def get_rows
-    # Header
-
-    header = []
-    header << 'Group'
-    header << 'Name'
-    header << 'URL'
-
-    each_tax do |tax,tag|
-      case tag[:type]
-      when :checkboxes
-        tag[:cls].all.each do |val|
-          header << val.name
-        end
-      when :text
-        header << tag[:cls].name
-      end
-    end
-    yield header
-
-    # Body
-
-    Page.all.each do |page|
-      line = []
-      line << page.group.name
-      line << page.name
-      line << page.uri
-
-      each_tax do |tax,tag|
-        case tag[:type]
-        when :checkboxes
-          tag[:cls].all.each do |val|
-            # Why doesn't this work?
-            # line << (page.send(tax).include?(val) ? 't' : 'nil')
-            line << (page.send(tax).map{|t|t.id}.include?(val.id) ? 'x' : '')
-          end
-        when :text
-          line << page.send(tax).map{|t|t.name}.join(', ')
-        end
-      end
-
-      yield line
-    end
-
-    nil
-  end
-
-  def each_tax
-    HarvesterNg::Application.config.taxonomies.each_pair do |tax,tag|
-      yield tax,tag
     end
   end
 end

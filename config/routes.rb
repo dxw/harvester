@@ -15,7 +15,7 @@ HarvesterNg::Application.routes.draw do
   end
 
   resource :export, only: [:show] do
-    get :to_gdocs
+    get 'to_gdocs(/:exported_data_id)', action: :to_gdocs, as: :to_gdocs
   end
 
   devise_for :users

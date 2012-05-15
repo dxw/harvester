@@ -30,6 +30,7 @@ gem 'rails3-jquery-autocomplete'
 gem 'couchrest'
 gem 'google_drive'
 gem 'progressbar', require: false
+gem 'resque'
 
 gem 'faker'
 
