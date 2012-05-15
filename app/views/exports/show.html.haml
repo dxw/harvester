@@ -5,6 +5,9 @@
 .dialogs
   #export_to_gdocs_dialog.modal
     .modal-header
-      %h3 Hello
+      %h3
+        Please wait
     .modal-body
-      %p Hi
+      %p Your document is being exported to Google Docs. This may take several minutes.
+      %p
+        = image_tag 'spinner.gif'
