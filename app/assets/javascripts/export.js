@@ -28,6 +28,7 @@
                 show: false
             })
             .hide()
+            .removeClass('hidden')
 
         $('#export_to_gdocs').click(function () {
             var uri = $(this).data('uri')
