@@ -6,4 +6,4 @@
 
   %ul
     - @needs.each do |need|
-      %li=link_to(need.name, edit_department_need_path(need))
+      %li=link_to(need.name, edit_department_need_path(@department, need))
