@@ -1,9 +1,14 @@
 .row-fluid
-  %h2 Needs
+  %h2 #{@department.name}: Needs
 
   = form_tag({action: :get_next}, method: :post) do
     =submit_tag('Get a need', class: 'btn')
 
-  %ul
+  %table.table.table-striped.table-condensed.table-bordered
     - @needs.each do |need|
-      %li=link_to(need.name, edit_department_need_path(@department, need))
+      %tr
+        %td.number.small
+          = need.pages.length
+          %span{class: need.done? ? 'icon-ok' : 'icon-remove'}
+        %td=link_to(need.name, edit_department_need_path(@department, need))
+  %ul
