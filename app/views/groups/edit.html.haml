@@ -18,7 +18,8 @@
                 %table.attributes
                   %tr
                     - Attr.all.each do |a|
-                      %td{:class => a.name}= a.name
+                      %td{:class => a.name}
+                        %abbr{:title=> a.description}=a.name
               %th Needs
               %th Audiences
             %tr
@@ -35,7 +36,20 @@
                             %input{type: 'checkbox', data: {name: "#{tax}::#{a.name}"}, disabled: !@group.taken_by?(current_user)}
 
           %tbody
+            - counter = 0
             - @group.pages.each do |page|
+              - if (counter+=1) % 5 == 0
+                - counter = 0
+                %tr
+                  %td
+                  %th
+                    %table.attributes
+                      %tr
+                        - Attr.all.each do |a|
+                          %td{:class => a.name}
+                            %abbr{:title=> a.description}=a.name
+                  %td
+                  %td
               %tr
                 %td
                   %a{href: page.uri, target: 'content'}= page.name
