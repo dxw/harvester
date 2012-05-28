@@ -1,5 +1,5 @@
 HarvesterNg::Application.routes.draw do
-  resources :departments, only: [] do
+  resources :departments, only: [:index, :show] do
     resources :groups, only: [:edit, :update, :index] do
       post :get_next, on: :collection
       get :autocomplete_audience_name, on: :collection

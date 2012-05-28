@@ -8,6 +8,14 @@ class Department < ActiveRecord::Base
     available.sample
   end
 
+  def percentage_groups_done
+    todo = Group.count(:conditions => "done='t' and department_id = #{self.id}")
+
+    return 0 if todo == 0
+
+    ((todo.to_f / groups.length) * 100.0).to_i
+  end
+
   def needs
     Need.find_by_sql(['select distinct needs.* from needs, pages_needs, pages, groups where needs.id = pages_needs.need_id and pages_needs.page_id = pages.id and pages.group_id = groups.id and groups.department_id = ?', self.id])
   end

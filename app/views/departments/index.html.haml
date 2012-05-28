@@ -1,0 +1,9 @@
+.row-fluid
+  %h2 Departments
+
+  %table.table.table-striped.table-condensed.table-bordered
+    - @departments.each do |department|
+      %tr
+        %td.number.small
+          #{department.groups.length} groups (#{department.percentage_groups_done}% done)
+        %td= link_to(department.name, department_groups_path(department))
