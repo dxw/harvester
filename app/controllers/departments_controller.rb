@@ -4,10 +4,6 @@ class DepartmentsController < ApplicationController
   end
 
   def index
-    @departments = Department.all
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @users }
-    end
+    @departments = current_user.departments
   end
 end
