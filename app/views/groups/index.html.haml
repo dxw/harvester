@@ -1,5 +1,7 @@
 .row-fluid
-  %h2 Groups
+  %h2 #{@department.name}: Groups 
+  %p.meta
+    #{@department.percentage_groups_done}% complete
 
   = form_tag({action: :get_next}, method: :post) do
     =submit_tag('Get a group', class: 'btn')
