@@ -17,6 +17,9 @@
         .container-fluid
           %a.brand{href: '/'}
             Harvester
+            - if @department
+              |
+              %span.department=@department.name
           %p.navbar-text.pull-right
           - if current_user.nil?
             .nav-collapse
