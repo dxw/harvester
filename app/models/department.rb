@@ -4,8 +4,7 @@ class Department < ActiveRecord::Base
   has_many :groups
 
   def next_group
-    available = groups.select{|r| r.available?}
-    available.sample
+    groups.not_done.not_taken.first
   end
 
   def percentage_groups_done
@@ -16,6 +15,7 @@ class Department < ActiveRecord::Base
     ((todo.to_f / groups.length) * 100.0).to_i
   end
 
+  # TODO: Could this be done as a proper AR relation?
   def needs
     Need.find_by_sql(['select distinct needs.* from needs, pages_needs, pages, groups where needs.id = pages_needs.need_id and pages_needs.page_id = pages.id and pages.group_id = groups.id and groups.department_id = ?', self.id])
   end

@@ -1,4 +1,10 @@
 module TakableMixin
+
+  def self.included(base)
+    base.scope(:not_done, base.where(:done => false))
+    base.scope(:not_taken, base.where(:taken_by => nil))
+  end
+
   def taken_by_user
     taken? ? User.find(self.taken_by) : nil
   end
