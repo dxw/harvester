@@ -3,8 +3,8 @@ class Department < ActiveRecord::Base
   has_and_belongs_to_many :users, join_table: :users_departments
   has_many :groups
 
-  def next_group
-    groups.not_done.not_taken.first
+  def next_group(not_id = 0)
+    groups.not_done.not_taken.where("id <> ?", not_id).first
   end
 
   def percentage_groups_done
@@ -16,7 +16,7 @@ class Department < ActiveRecord::Base
   end
 
   # TODO: Could this be done as a proper AR relation?
-  def needs
+  def needs(not_id = 0)
     Need.find_by_sql(['select distinct needs.* from needs, pages_needs, pages, groups where needs.id = pages_needs.need_id and pages_needs.page_id = pages.id and pages.group_id = groups.id and groups.department_id = ?', self.id])
   end
 

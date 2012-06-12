@@ -18,7 +18,7 @@ module TakableResource
     end
 
     if params[:commit].start_with?('Next')
-      next_resource!
+      next_resource!(params[:id])
     end
 
     redirect
@@ -39,8 +39,8 @@ module TakableResource
     return
   end
 
-  def next_resource!
-    @resource = @department.send("next_#{resource_name}")
+  def next_resource!(not_id = 0)
+    @resource = @department.send("next_#{resource_name}", not_id)
     @resource.take! current_user if @resource
   end
 
