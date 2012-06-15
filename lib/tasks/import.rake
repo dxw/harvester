@@ -19,9 +19,9 @@ namespace :import do
     require Rails.root.join('lib','import','csv')
 
     file = ENV['CSV']
-    department = ENV['DEPARTMENT'].to_i
+    department = Department.find_by_name(ENV['DEPARTMENT']).id
     if file.nil? or department.nil?
-      puts 'Usage: rake import_csv CSV=file.csv DEPARTMENT=id'
+      puts 'Usage: rake import_csv CSV=file.csv DEPARTMENT=name'
       exit 1
     end
     ImportCSV.go file, department

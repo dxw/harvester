@@ -34,7 +34,7 @@ class ImportCSV
 
       # Adding pages
       unless row[1].nil?
-        group = Group.find_or_create_by_name!(group_name)
+        group = Group.find_or_create_by_name(group_name) #TODO: use ! variant of this command when we upgrade from 3.2.2
         group.department = @department
         if group.name.nil?
           group.name = "Group #{group.id}"
