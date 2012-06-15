@@ -1,5 +1,7 @@
 ActiveAdmin.register User do
 
+  menu priority: 1
+
   form do |f|
     f.inputs "Details" do
       f.input :email
