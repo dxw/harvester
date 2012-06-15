@@ -14,6 +14,17 @@ GEM
       rack-cache (~> 1.1)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.2)
+    activeadmin (0.4.3)
+      bourbon (>= 1.0.0)
+      devise (>= 1.1.2)
+      fastercsv
+      formtastic (>= 2.0.0)
+      inherited_resources (> 0)
+      jquery-rails (>= 1.0.0)
+      kaminari (>= 0.13.0)
+      meta_search (>= 0.9.2)
+      rails (>= 3.0.0)
+      sass (>= 3.1.0)
     activemodel (3.2.2)
       activesupport (= 3.2.2)
       builder (~> 3.0.0)
@@ -30,6 +41,8 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bourbon (1.4.0)
+      sass (>= 3.1)
     builder (3.0.0)
     commonjs (0.2.5)
     couchrest (1.0.1)
@@ -54,19 +67,30 @@ GEM
       i18n (~> 0.4)
     faraday (0.8.0)
       multipart-post (~> 1.1)
+    fastercsv (1.5.4)
+    formtastic (2.1.1)
+      actionpack (~> 3.0)
     google_drive (0.3.0)
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
     haml (3.1.4)
+    has_scope (0.5.1)
     hike (1.2.1)
     httpauth (0.1)
     i18n (0.6.0)
+    inherited_resources (1.3.1)
+      has_scope (~> 0.5.0)
+      responders (~> 0.6)
     journey (1.0.3)
     jquery-rails (2.0.1)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.7.3)
+    kaminari (0.13.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      railties (>= 3.0.0)
     less (2.1.0)
       commonjs (~> 0.2.0)
       therubyracer (~> 0.10.0)
@@ -78,6 +102,11 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_search (1.1.3)
+      actionpack (~> 3.1)
+      activerecord (~> 3.1)
+      activesupport (~> 3.1)
+      polyamorous (~> 0.5.0)
     mime-types (1.18)
     multi_json (1.3.6)
     multipart-post (1.1.5)
@@ -91,6 +120,8 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.4)
     orm_adapter (0.0.7)
+    polyamorous (0.5.0)
+      activerecord (~> 3.0)
     polyglot (0.3.3)
     progressbar (0.11.0)
     rack (1.4.1)
@@ -125,6 +156,8 @@ GEM
     redis (2.2.2)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
+    responders (0.9.1)
+      railties (~> 3.1)
     resque (1.20.0)
       multi_json (~> 1.0)
       redis-namespace (~> 1.0.2)
@@ -193,6 +226,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeadmin
   couchrest
   devise
   factory_girl_rails
@@ -200,6 +234,7 @@ DEPENDENCIES
   google_drive
   haml
   jquery-rails
+  meta_search (>= 1.1.0.pre)
   mysql2
   newrelic_rpm
   progressbar

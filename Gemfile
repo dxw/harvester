@@ -34,6 +34,9 @@ gem 'resque'
 
 gem 'faker'
 
+gem 'activeadmin'
+gem 'meta_search', '>= 1.1.0.pre'
+
 group :production do
   gem 'mysql2'
   gem 'newrelic_rpm'
