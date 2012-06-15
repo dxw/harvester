@@ -25,8 +25,7 @@ HarvesterNg::Application.routes.draw do
 
   devise_for :users
 
-  #TODO: this will not always work
-  match '/' => redirect('/departments/1/groups')
+  match '/' => redirect('/departments')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
