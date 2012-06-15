@@ -45,4 +45,10 @@ ActiveAdmin.register User do
   sections.each do |s|
     filter s unless s == :id
   end
+
+  csv do
+    sections.each do |s|
+      column s
+    end
+  end
 end
