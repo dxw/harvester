@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def can_edit_department? department
     departments.include? department
   end
+
+  def to_s
+    self.email
+  end
 end

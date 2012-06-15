@@ -2,6 +2,7 @@ class Department < ActiveRecord::Base
   attr_accessible :name
   has_and_belongs_to_many :users, join_table: :users_departments
   has_many :groups
+  attr_accessible :user_ids
 
   def next_group(not_id = 0)
     groups.not_done.not_taken.where("id <> ?", not_id).first
