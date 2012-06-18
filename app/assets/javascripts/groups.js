@@ -52,6 +52,17 @@
         })
         $(window).trigger('resize')
 
+        if($('input.btn[value="Save"]').length != 0) {
+
+          $('input.btn').on('click', function() {
+            $(window).off('beforeunload');
+          });
+
+          $(window).on('beforeunload', function() {
+            return 'If you don\'t click Save or Next group, your changes will be lost, and no one will be able to edit this group except you.';  
+          });
+        }
+
         // Meta checkboxes
         $('body.groups.edit table.meta input').each(function () {
             var name = $(this).data('name')
