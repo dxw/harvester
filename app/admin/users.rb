@@ -5,9 +5,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs "Details" do
       f.input :email
-      if f.object.new_record?
-        f.input :password
-      end
+      f.input :password
     end
     f.buttons
   end
