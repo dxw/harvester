@@ -9,11 +9,11 @@ class Department < ActiveRecord::Base
   end
 
   def percentage_groups_done
-    todo = Group.count(:conditions => "done='t' and department_id = #{self.id}")
+    done = Group.count(:conditions => "done='t' and department_id = #{self.id}")
 
-    return 0 if todo == 0
+    return 0 if done == 0
 
-    ((todo.to_f / groups.length) * 100.0).to_i
+    ((done.to_f / groups.length) * 100.0).to_i
   end
 
   # TODO: Could this be done as a proper AR relation?
