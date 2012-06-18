@@ -9,7 +9,7 @@ class Department < ActiveRecord::Base
   end
 
   def percentage_groups_done
-    done = Group.count(:conditions => "done='t' and department_id = #{self.id}")
+    done = Group.count(:conditions => {:done => true, :department_id => self.id})
 
     return 0 if done == 0
 
