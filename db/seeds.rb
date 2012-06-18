@@ -6,12 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 [
-  ['C', 'Citizen'],
-  ['B', 'Business'],
-  ['S', 'Specialist'],
-  ['G', 'Inside Government'],
-  ['A', 'Archive'],
-  ['H', 'On hold'],
+  ['Ci', 'Citizen'],
+  ['Bz', 'Business'],
+  ['Sp', 'Specialist'],
+  ['IG', 'Inside Government'],
+  ['Ar', 'Archive'],
+  ['??', 'On hold'],
 ].each do |attr|
   Attr.create(name: attr[0], description: attr[1])
 end
