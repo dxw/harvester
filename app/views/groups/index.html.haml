@@ -7,9 +7,15 @@
     =submit_tag('Get a group', class: 'btn')
 
   %table.table.table-striped.table-condensed.table-bordered
+    %tr
+      %th Count
+      %th Group
+      %th Taken by
+
     - @groups.each do |group|
       %tr
         %td.number.small
           = group.pages.length
           %span{class: group.done? ? 'icon-ok' : 'icon-remove'}
         %td= link_to(group.name, edit_department_group_path(@department.id, group))
+        %td=group.user.email if !group.user.blank?

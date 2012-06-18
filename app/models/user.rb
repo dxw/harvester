@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_and_belongs_to_many :departments, join_table: :users_departments
-  has_many :groups
+  has_many :groups, :foreign_key => 'taken_by'
 
   def can_edit_department? department
     departments.include? department

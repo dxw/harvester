@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
   attr_accessible :name
   belongs_to :department
   has_many :pages
+  belongs_to :user, :foreign_key => 'taken_by'
 
   before_save do
     self.done = _done?
