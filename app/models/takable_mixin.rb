@@ -10,7 +10,7 @@ module TakableMixin
   end
 
   def taken?
-    !self.taken_by.nil?
+    !self.taken_by.nil? && self.taken_by != 0
   end
 
   def take! user
