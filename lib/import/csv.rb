@@ -43,7 +43,9 @@ class ImportCSV
         group.save!
 
         page = Page.create!(uri: row[1], name: row[2])
-        page.name = "Page #{page.id}" if page.name.nil?
+        if page.name.nil?
+          page.name = page.uri.split('/')[-1]
+        end
         page.group = group
         page.save!
       end

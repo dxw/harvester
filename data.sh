@@ -16,7 +16,7 @@ rake create:department NAME=FCO  USERS=all
 rake create:department NAME=MOD  USERS=all
 rake create:department NAME=DCLG USERS=all
 
-rake import:csv DEPARTMENT=BIS  CSV='../data/prod-data/BIS.gov.uk URLs - To harvest.csv' --trace
+rake import:csv DEPARTMENT=BIS  CSV='../data/prod-data/BIS.gov.uk URLs - To harvest.csv'
 rake import:csv DEPARTMENT=DCLG CSV='../data/prod-data/DCLG Planning and Regen URLs for Harvester - 02 June 2012 - HARVEST.csv'
 rake import:csv DEPARTMENT=DCLG CSV='../data/prod-data/DCLG URLs for Harvester - 8 June 2012 -  DCLG to harvest.csv'
 rake import:csv DEPARTMENT=FCO  CSV='../data/prod-data/urls fco final - HARVEST.csv'
