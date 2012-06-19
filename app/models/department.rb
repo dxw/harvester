@@ -5,7 +5,12 @@ class Department < ActiveRecord::Base
   attr_accessible :user_ids
 
   def next_group(not_id = 0)
-    groups.not_done.not_taken.where("id <> ?", not_id).first
+    next_by_id = groups.not_done.not_taken.where("id > ?", not_id).first
+    if next_by_id
+      next_by_id
+    else
+      groups.not_done.not_taken.where("id != ?", not_id).first
+    end
   end
 
   def percentage_groups_done
