@@ -6,10 +6,10 @@ class Department < ActiveRecord::Base
 
   def next_group(not_id = 0)
     next_by_id = groups.not_done.not_taken.where("id > ?", not_id).first
-    if next_by_id
-      next_by_id
+    if next_by_id.nil?
+      groups.not_done.not_taken.where("id <> ?", not_id).first
     else
-      groups.not_done.not_taken.where("id != ?", not_id).first
+      next_by_id
     end
   end
 
