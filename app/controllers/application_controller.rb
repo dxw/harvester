@@ -9,7 +9,7 @@ module TakableResource
 
     if params[:commit] == 'Edit'
       @resource.take! current_user
-    elsif ((params[:commit] == 'Save') || (params[:commit].start_with?('Next'))) && @resource.taken_by?(current_user)
+    elsif ((params[:commit].nil?) || (params[:commit] == 'Save') || (params[:commit].start_with?('Next'))) && @resource.taken_by?(current_user)
       @resource.taken_by = nil
 
       update_taxonomies
@@ -17,8 +17,13 @@ module TakableResource
       @resource.save!
     end
 
-    if params[:commit].start_with?('Next')
+    if !params[:commit].nil? && params[:commit].start_with?('Next')
       next_resource!(params[:id])
+    end
+
+    if params[:commit].nil?
+      redirect_to send("departments_path")
+      return
     end
 
     redirect

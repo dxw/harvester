@@ -69,5 +69,14 @@
 
             new metaCheckbox($(this), $('table.body input[data-name="'+name+'"]'))
         })
+
+        // Save when navigating away
+        $('body.groups.edit').each(function () {
+            $('a.brand').click(function () {
+                window.onbeforeunload = function(){}
+                $('form.main').submit()
+                return false
+            })
+        })
     })
 })(jQuery)
