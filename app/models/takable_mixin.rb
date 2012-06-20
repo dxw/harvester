@@ -2,7 +2,7 @@ module TakableMixin
 
   def self.included(base)
     base.scope(:not_done, base.where(:done => false))
-    base.scope(:not_taken, base.where(:taken_by => nil))
+    base.scope(:not_taken, base.where('taken_by IS NULL OR taken_by = 0'))
   end
 
   def taken_by_user
