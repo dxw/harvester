@@ -51,6 +51,11 @@ class ImportCSV
       end
     end
 
+    # If we don't do this, "done" is not set correctly
+    @department.groups.each do |g|
+      g.save!
+    end
+
     progress_bar.finish
   end
 end
