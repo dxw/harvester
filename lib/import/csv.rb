@@ -34,25 +34,26 @@ class ImportCSV
 
       # Adding pages
       unless row[1].nil?
-        group = Group.find_or_create_by_name(group_name)
+        groups = @department.groups.where(:name => group_name)
 
-        if group.department == @department
-          p 'x' if group_name == 'Corporate home page'
-          # Do nothing
-        elsif group.department.nil?
-          p 'y' if group_name == 'Corporate home page'
-          group.department = @department
-        else
-          p 'z' if group_name == 'Corporate home page'
+        if groups.size > 1
+          raise Exception("More than one group with name #{group_name}")
+        end
+
+        group = groups.first
+
+        if group.nil?
           group = Group.create!(name: group_name)
+          group.done = false
           group.department = @department
+          group.save!
         end
 
-        if group.name.nil?
-          group.name = "Group #{group.id}"
-          group_name = group.name
-        end
-        group.save!
+#        if group.name.nil?
+#          group.name = "Group #{group.id}"
+#          group_name = group.name
+#        end
+#        group.save!
 
         page = Page.create!(uri: row[1], name: row[2])
         if page.name.nil?
